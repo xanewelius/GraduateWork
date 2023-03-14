@@ -10,9 +10,13 @@
 		4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB529BDEA7E0051B731 /* AppDelegate.swift */; };
 		4069DAB829BDEA7E0051B731 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */; };
 		4069DABF29BDEA800051B731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4069DABE29BDEA800051B731 /* Assets.xcassets */; };
-		4069DACA29BDF8D30051B731 /* LecturViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAC929BDF8D30051B731 /* LecturViewController.swift */; };
+		4069DACA29BDF8D30051B731 /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAC929BDF8D30051B731 /* LectureViewController.swift */; };
 		4069DACD29BE07F00051B731 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DACC29BE07F00051B731 /* Image.swift */; };
 		4069DACF29BE0AED0051B731 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DACE29BE0AED0051B731 /* TabBarController.swift */; };
+		406AE96129BE262D00E44503 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE96029BE262D00E44503 /* SettingsViewController.swift */; };
+		406AE96429BE647200E44503 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE96329BE647200E44503 /* NetworkManager.swift */; };
+		406AE96629BE663100E44503 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE96529BE663100E44503 /* Model.swift */; };
+		406AE97029C10F0B00E44503 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,9 +25,14 @@
 		4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4069DABE29BDEA800051B731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4069DAC329BDEA800051B731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4069DAC929BDF8D30051B731 /* LecturViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturViewController.swift; sourceTree = "<group>"; };
+		4069DAC929BDF8D30051B731 /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
 		4069DACC29BE07F00051B731 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		4069DACE29BE0AED0051B731 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		4069DAD229BE17A30051B731 /* leonid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = leonid.mp4; sourceTree = "<group>"; };
+		406AE96029BE262D00E44503 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		406AE96329BE647200E44503 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		406AE96529BE663100E44503 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +69,11 @@
 				4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */,
 				4069DAD029BE0DEC0051B731 /* Model */,
 				4069DACB29BDF8EE0051B731 /* View */,
+				4069DAD129BE178E0051B731 /* video */,
 				4069DABE29BDEA800051B731 /* Assets.xcassets */,
 				4069DAC329BDEA800051B731 /* Info.plist */,
+				406AE96329BE647200E44503 /* NetworkManager.swift */,
+				406AE96529BE663100E44503 /* Model.swift */,
 			);
 			path = Nika;
 			sourceTree = "<group>";
@@ -69,8 +81,10 @@
 		4069DACB29BDF8EE0051B731 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4069DAC929BDF8D30051B731 /* LecturViewController.swift */,
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
+				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
+				406AE96029BE262D00E44503 /* SettingsViewController.swift */,
+				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -81,6 +95,14 @@
 				4069DACC29BE07F00051B731 /* Image.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4069DAD129BE178E0051B731 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				4069DAD229BE17A30051B731 /* leonid.mp4 */,
+			);
+			path = video;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,9 +176,13 @@
 			files = (
 				4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */,
 				4069DACD29BE07F00051B731 /* Image.swift in Sources */,
+				406AE97029C10F0B00E44503 /* AuthorizationViewController.swift in Sources */,
 				4069DAB829BDEA7E0051B731 /* SceneDelegate.swift in Sources */,
+				406AE96429BE647200E44503 /* NetworkManager.swift in Sources */,
 				4069DACF29BE0AED0051B731 /* TabBarController.swift in Sources */,
-				4069DACA29BDF8D30051B731 /* LecturViewController.swift in Sources */,
+				4069DACA29BDF8D30051B731 /* LectureViewController.swift in Sources */,
+				406AE96129BE262D00E44503 /* SettingsViewController.swift in Sources */,
+				406AE96629BE663100E44503 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

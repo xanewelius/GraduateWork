@@ -16,12 +16,12 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        guard let lectureImage = UIImage(systemName: "heart") else { return }
+        guard let lectureImage = UIImage(systemName: "book") else { return }
         guard let settingsImage = UIImage(systemName: "gearshape") else { return }
         
         viewControllers = [
-            createNavigationController(vc: LecturViewController(), itemName: "Lecture", itemImage: lectureImage),
-            createNavigationController(vc: LecturViewController(), itemName: "Settings", itemImage: settingsImage),
+            createNavigationController(vc: LectureViewController(), itemName: "Лекции", itemImage: lectureImage),
+            createNavigationController(vc: SettingsViewController(), itemName: "Настройки", itemImage: settingsImage),
         ]
     }
     

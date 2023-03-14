@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationBarAppearance.configureWithOpaqueBackground()
         //UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         
-        window.rootViewController = TabBarController()
+        window.rootViewController = AuthorizationViewController()
         self.window = window
         window.makeKeyAndVisible()
     }
