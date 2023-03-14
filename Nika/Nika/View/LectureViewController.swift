@@ -38,7 +38,6 @@ final class LectureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        NetworkManager.shared.getInfo()
     }
 }
 
