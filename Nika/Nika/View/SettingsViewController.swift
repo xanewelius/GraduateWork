@@ -43,6 +43,11 @@ final class SettingsViewController: UIViewController {
         return detail
     }()
     
+    private lazy var profileDetailViewController: ProfileDetailViewController = {
+        let detail = ProfileDetailViewController()
+        return detail
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -103,10 +108,10 @@ private extension SettingsViewController {
         //models.append(.switchCell(model: SettingsSwitchOption(title: "Dark", handler: {
             
         //})))
-        models.append(.staticCell(model: SettingsOption(title: "Информация") {
-            self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
-        }))
         models.append(.staticCell(model: SettingsOption(title: "Пользователь") {
+            self.navigationController?.pushViewController(self.profileDetailViewController, animated: true)
+        }))
+        models.append(.staticCell(model: SettingsOption(title: "Информация") {
             self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
         }))
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
