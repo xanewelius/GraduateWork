@@ -14,14 +14,14 @@ final class NetworkManager {
     
     func getInfo() {
         let url = URL(string: urlString)!
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data else { return }
             if let config = try? JSONDecoder().decode(Config.self, from: data) {
                 print(config.user)
             } else {
-                print(error)
+                print(error as Any)
             }
         }
         task.resume()

@@ -27,18 +27,10 @@ final class LectureViewController: UIViewController {
         return tableView
     }()
     
-    private let searchTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Lectrure"
-        label.textColor = .black
-        return label
-    }()
-    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        NetworkManager.shared.getInfo()
     }
 }
 
