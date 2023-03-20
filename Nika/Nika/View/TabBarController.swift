@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
         guard let settingsImage = UIImage(systemName: "gearshape") else { return }
         
         viewControllers = [
-            createNavigationController(vc: LectureViewController(), itemName: "Лекции", itemImage: lectureImage),
+            createNavigationController(vc: CoursesViewController(), itemName: "Курсы", itemImage: lectureImage),
             createNavigationController(vc: SettingsViewController(), itemName: "Настройки", itemImage: settingsImage),
         ]
     }

@@ -42,7 +42,7 @@ final class AuthorizationViewController: UIViewController {
     private let loginField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Логин"
-        textField.borderStyle = .none
+        textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -50,7 +50,7 @@ final class AuthorizationViewController: UIViewController {
     private let passwordField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Пароль"
-        textField.borderStyle = .none
+        textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -72,13 +72,13 @@ private extension AuthorizationViewController {
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginField.widthAnchor.constraint(equalToConstant: 200.0),
+            loginField.widthAnchor.constraint(equalToConstant: 260.0),
             passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor, constant: 20),
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordField.widthAnchor.constraint(equalToConstant: 200.0),
+            passwordField.widthAnchor.constraint(equalToConstant: 260.0),
             button.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.widthAnchor.constraint(equalToConstant: 200.0),
+            button.widthAnchor.constraint(equalToConstant: 220.0),
             button.heightAnchor.constraint(equalToConstant: 40.0)
         ])
     }
