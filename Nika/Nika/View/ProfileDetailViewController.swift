@@ -31,7 +31,7 @@ final class ProfileDetailViewController: UIViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Кузьмин Максим Александрович"
+        label.text = "-"
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -39,7 +39,7 @@ final class ProfileDetailViewController: UIViewController {
     
     private let specialityTitle: UILabel = {
         let label = UILabel()
-        label.text = "Специальность"
+        label.text = "Номер"
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -47,7 +47,7 @@ final class ProfileDetailViewController: UIViewController {
     
     private let specialityLabel: UILabel = {
         let label = UILabel()
-        label.text = "iOS разработка"
+        label.text = "-"
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

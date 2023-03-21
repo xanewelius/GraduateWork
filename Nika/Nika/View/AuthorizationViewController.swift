@@ -9,12 +9,12 @@ import UIKit
 
 final class AuthorizationViewController: UIViewController {
     
-    
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        NetworkManager.shared.getInfo()
+        //NetworkManager.shared.getInfo()
     }
     
     private let logo: UIImageView = {
@@ -68,7 +68,7 @@ private extension AuthorizationViewController {
     
     func layout() {
         NSLayoutConstraint.activate([
-            logo.bottomAnchor.constraint(equalTo: loginField.topAnchor, constant: -80),
+            logo.bottomAnchor.constraint(equalTo: loginField.topAnchor, constant: -60),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -82,13 +82,33 @@ private extension AuthorizationViewController {
             button.heightAnchor.constraint(equalToConstant: 40.0)
         ])
     }
+}
+
+private extension AuthorizationViewController {
+    func showAlert() {
+            // create the alert
+            let alert = UIAlertController(title: "Неправильный логин или пароль",
+                                          message: "Хотите попробовать ещё раз?",
+                                          preferredStyle: UIAlertController.Style.alert)
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: nil))
+        
+            alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
     
     @objc func buttonTapped() {
         print("tap")
-        //print(loginField.text)
-        let tab = TabBarController()
-        tab.modalPresentationStyle = .fullScreen
-        present(tab, animated: true)
+        let login = "1"
+        let password = "1"
+        if loginField.text == login && passwordField.text == password {
+            let tab = TabBarController()
+            tab.modalPresentationStyle = .fullScreen
+            present(tab, animated: true)
+        } else {
+            showAlert()
+        }
         //show(lecture, sender: self)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class CoursesViewController: UIViewController {
     
-    private let images = Image.getImageList()
+    private let images = Courses.getImageList()
     private let lecture = LectureViewController()
     
     override func viewDidLoad() {
@@ -21,9 +21,7 @@ final class CoursesViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .systemBackground
         tableView.separatorColor = .gray
-        
         tableView.tableHeaderView = UIView(frame: .zero)
-        
         tableView.allowsSelection = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Сell")
         return tableView
@@ -65,31 +63,19 @@ extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
         let image = images[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
-        content.text = image.lecture
+        content.text = image.course
         content.secondaryText = image.description
-        content.image = UIImage(named: "1")
+        content.image = UIImage(named: "2")
         content.textToSecondaryTextVerticalPadding = 5
         //content.imageToTextPadding = 15
         //content.imageProperties.cornerRadius = tableView.rowHeight
         cell.contentConfiguration = content
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //let video = images[indexPath.row]
+        let courses = images[indexPath.row]
         self.navigationController?.pushViewController(self.lecture, animated: true)
-        
-        //let urlPath = Bundle.main.path(forResource: "leonid", ofType: "mp4")
-        //print(urlPath)
-        //guard let url = URL(string: "file:///Users/xanew/Downloads/leonid.mp4") else { return }
-        //let player = AVPlayer(url: url)
-        //let playerViewController = AVPlayerViewController()
-        //playerViewController.player = player
-        
-        //present(playerViewController, animated: true) {
-        //    player.play()
-        //}
     }
 }
