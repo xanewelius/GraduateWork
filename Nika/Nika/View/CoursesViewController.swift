@@ -75,7 +75,7 @@ extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let courses = images[indexPath.row]
+        //let courses = images[indexPath.row]
         self.navigationController?.pushViewController(self.lecture, animated: true)
     }
 }
