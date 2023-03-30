@@ -14,6 +14,7 @@ final class AuthorizationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        self.termsTextView.delegate = self
         //NetworkManager.shared.getInfo()
     }
     
@@ -111,6 +112,35 @@ final class AuthorizationViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
+    private lazy var toggleButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "eye", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
+        configuration.buttonSize = .mini
+        let button = UIButton(configuration: configuration)
+        button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let termsTextView: UITextView = {
+        let policyText = "политикой конфиденциальности"
+        let signatureText = "соглашением об электронной подписи"
+        let attributedString = NSMutableAttributedString(string: "Нажимая кнопку \"Войти\", Вы соглашаетесь с \(policyText) и \(signatureText)")
+        attributedString.addAttribute(.link, value: "policy://privacyPolicy", range: (attributedString.string as NSString).range(of: policyText))
+        attributedString.addAttribute(.link, value: "agreement://termsAndConditions", range: (attributedString.string as NSString).range(of: signatureText))
+        let text = UITextView()
+        text.attributedText = attributedString
+        text.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
+        text.font = .systemFont(ofSize: 10)
+        text.textColor = .label
+        text.isSelectable = true
+        text.isEditable = false
+        text.isScrollEnabled = false
+        text.delaysContentTouches = false
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
+    }()
 }
 
 private extension AuthorizationViewController {
@@ -121,7 +151,11 @@ private extension AuthorizationViewController {
         view.addSubview(labelLoginDescription)
         view.addSubview(loginField)
         view.addSubview(passwordField)
+        passwordField.rightView = toggleButton
+        passwordField.rightViewMode = .always
+        view.addSubview(toggleButton)
         view.addSubview(button)
+        view.addSubview(termsTextView)
         layout()
     }
     
@@ -145,29 +179,39 @@ private extension AuthorizationViewController {
             button.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: 340.0),
-            button.heightAnchor.constraint(equalToConstant: 50.0)
+            button.heightAnchor.constraint(equalToConstant: 50.0),
+            termsTextView.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 5),
+            termsTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            termsTextView.widthAnchor.constraint(equalToConstant: 340)
         ])
     }
 }
 
 private extension AuthorizationViewController {
     func showAlert() {
-            // create the alert
-            let alert = UIAlertController(title: "Неправильный логин или пароль",
-                                          message: "Хотите попробовать ещё раз?",
-                                          preferredStyle: UIAlertController.Style.alert)
-            // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: nil))
+        // create the alert
+        let alert = UIAlertController(title: "Неправильный логин или пароль",
+                                      message: "Хотите попробовать ещё раз?",
+                                      preferredStyle: UIAlertController.Style.alert)
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: nil))
         
-            alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-        }
+        alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func togglePasswordVisibility() {
+        // Изменяем состояние кнопки и свойство isSecureTextEntry
+        passwordField.isSecureTextEntry.toggle()
+        let imageName = passwordField.isSecureTextEntry ? "eye" : "eye.fill"
+        toggleButton.configuration?.image = UIImage(systemName: imageName, withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
+    }
     
     @objc func buttonTapped() {
         print("tap")
-        let login = "1"
-        let password = "1"
+        let login = "kuzmin"
+        let password = "Mypassword"
         if loginField.text == login && passwordField.text == password {
             let tab = TabBarController()
             tab.modalPresentationStyle = .fullScreen
@@ -178,3 +222,29 @@ private extension AuthorizationViewController {
         //show(lecture, sender: self)
     }
 }
+
+extension AuthorizationViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.scheme == "policy" {
+            DispatchQueue.main.async {
+                self.showWebViewerController(with: "https://cdoprof.com/sample_policy.pdf")
+            }
+        } else if URL.scheme == "agreement" {
+            DispatchQueue.main.async {
+                self.showWebViewerController(with: "https://cdoprof.com/ds_agreement.pdf")
+            }
+        }
+        return false
+    }
+    
+    private func showWebViewerController(with urlString: String) {
+        DispatchQueue.main.async {
+            let vc = WebViewerController(with: urlString)
+            let nav = UINavigationController(rootViewController: vc)
+            self.present(nav, animated: true, completion: nil)
+        }
+    }
+}
+
+
+
