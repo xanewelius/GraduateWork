@@ -11,78 +11,73 @@ final class CoursesViewController: UIViewController {
     
     private let images = Courses.getImageList()
     private let lecture = LectureViewController()
-    private let collectionInsets = UIEdgeInsets(top: 5, left: 3, bottom: 5, right: 5)
+    private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
     }
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
-        //tableView.separatorStyle = .singleLine
-        //tableView.separatorColor = .gray
-        tableView.tableHeaderView = UIView(frame: .zero)
-        tableView.allowsSelection = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Сell")
-        return tableView
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 350, height: 80)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = true
+        collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.backgroundColor = .white
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        return collectionView
     }()
 }
 
 private extension CoursesViewController {
     func configureView() {
         view.backgroundColor = .white
-        //navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: searchTitle)
         title = "Курсы"
-        //navigationController?.navigationBar.size
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 125
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
         layout()
     }
     
     func layout() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
-extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         images.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Сell", for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CoursesCollectionViewCell else { return UICollectionViewCell() }
         let image = images[indexPath.row]
-        
-        var content = cell.defaultContentConfiguration()
-        content.text = image.course
-        content.textProperties.font = .systemFont(ofSize: 20, weight: .semibold)
-        content.textToSecondaryTextVerticalPadding = 20
-        content.secondaryText = image.description
-        content.secondaryTextProperties.font = .systemFont(ofSize: 12, weight: .light)
-        content.prefersSideBySideTextAndSecondaryText = true
-        //content.image = UIImage(named: "2")
-        //content.imageToTextPadding = 15
-        //content.imageProperties.cornerRadius = tableView.rowHeight
-        //cell.backgroundColor = .gray
-        cell.contentConfiguration = content
-        //cell.separatorInset = collectionInsets
+        //print(images)
+        cell.configure(with: image)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        //let courses = images[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = images[indexPath.row]
+        collectionView.deselectItem(at: indexPath, animated: true)
         self.navigationController?.pushViewController(self.lecture, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        collectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        collectionInsets.left
     }
 }

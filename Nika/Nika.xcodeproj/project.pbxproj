@@ -23,6 +23,7 @@
 		406AE97A29C3911C00E44503 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */; };
 		406AE97E29C8D3F700E44503 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97D29C8D3F600E44503 /* CoursesViewController.swift */; };
 		406AE98029D6025800E44503 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97F29D6025800E44503 /* WebViewerController.swift */; };
+		406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		406AE97D29C8D3F600E44503 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		406AE97F29D6025800E44503 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
+		406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
 				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
+				406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */,
 				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
 				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 				406AE97F29D6025800E44503 /* WebViewerController.swift */,
@@ -194,6 +197,7 @@
 			files = (
 				4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */,
 				406AE97E29C8D3F700E44503 /* CoursesViewController.swift in Sources */,
+				406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */,
 				4069DACD29BE07F00051B731 /* Image.swift in Sources */,
 				406AE97629C11AC000E44503 /* SettingsViewController.swift in Sources */,
 				406AE97729C11AC000E44503 /* AppDetailViewController.swift in Sources */,
