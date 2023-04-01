@@ -40,9 +40,9 @@ extension Image {
 extension Courses {
     static func getImageList() -> [Courses] {
         [
-            Courses(description: "12.02.23 - 24.04.23", course: "Шахтер"),
-            Courses(description: "12.02.23 - 24.04.23", course: "Сварщик"),
-            Courses(description: "12.02.23 - 24.04.23", course: "Монтажник")
+            Courses(description: "Обучение с хх.хх.хххх по хх.хх.хххх", course: "Шахтер"),
+            Courses(description: "Обучение с хх.хх.хххх по хх.хх.хххх", course: "Сварщик"),
+            Courses(description: "Обучение с хх.хх.хххх по хх.хх.хххх", course: "Монтажник")
         ]
     }
 }

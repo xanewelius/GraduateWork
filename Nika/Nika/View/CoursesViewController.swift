@@ -11,6 +11,7 @@ final class CoursesViewController: UIViewController {
     
     private let images = Courses.getImageList()
     private let lecture = LectureViewController()
+    private let collectionInsets = UIEdgeInsets(top: 5, left: 3, bottom: 5, right: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,8 @@ final class CoursesViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .systemBackground
-        tableView.separatorColor = .gray
+        //tableView.separatorStyle = .singleLine
+        //tableView.separatorColor = .gray
         tableView.tableHeaderView = UIView(frame: .zero)
         tableView.allowsSelection = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Сell")
@@ -64,12 +66,17 @@ extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
         
         var content = cell.defaultContentConfiguration()
         content.text = image.course
+        content.textProperties.font = .systemFont(ofSize: 20, weight: .semibold)
+        content.textToSecondaryTextVerticalPadding = 20
         content.secondaryText = image.description
-        content.image = UIImage(named: "2")
-        content.textToSecondaryTextVerticalPadding = 5
+        content.secondaryTextProperties.font = .systemFont(ofSize: 12, weight: .light)
+        content.prefersSideBySideTextAndSecondaryText = true
+        //content.image = UIImage(named: "2")
         //content.imageToTextPadding = 15
         //content.imageProperties.cornerRadius = tableView.rowHeight
+        //cell.backgroundColor = .gray
         cell.contentConfiguration = content
+        //cell.separatorInset = collectionInsets
         return cell
     }
     
