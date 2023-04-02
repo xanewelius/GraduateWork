@@ -24,6 +24,7 @@
 		406AE97E29C8D3F700E44503 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97D29C8D3F600E44503 /* CoursesViewController.swift */; };
 		406AE98029D6025800E44503 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97F29D6025800E44503 /* WebViewerController.swift */; };
 		406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */; };
+		406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		406AE97D29C8D3F600E44503 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		406AE97F29D6025800E44503 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewCell.swift; sourceTree = "<group>"; };
+		406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
 				406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */,
 				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
+				406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */,
 				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 				406AE97F29D6025800E44503 /* WebViewerController.swift */,
 				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
@@ -210,6 +213,7 @@
 				406AE97829C11AC000E44503 /* SwitchTableViewCell.swift in Sources */,
 				4069DACA29BDF8D30051B731 /* LectureViewController.swift in Sources */,
 				406AE97529C11AC000E44503 /* SettingsTableViewCell.swift in Sources */,
+				406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */,
 				406AE96629BE663100E44503 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
