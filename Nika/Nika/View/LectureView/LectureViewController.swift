@@ -13,13 +13,14 @@ final class LectureViewController: UIViewController {
     //MARK: - Variables
     private let images = Image.getImageList()
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    var courses = Courses.init(description: "f", course: "f")
     //private let video =
     
     //MARK: - UIComponents
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 350, height: 120)
+        layout.itemSize = CGSize(width: 370, height: 120)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +42,8 @@ private extension LectureViewController {
     func configureView() {
         view.backgroundColor = .white
         //navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: searchTitle)
-        title = "Лекции"
-        //navigationController?.navigationBar.size
+        //title = "Лекции / \(courses.course)"
+        //print(courses)
         navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -52,7 +53,7 @@ private extension LectureViewController {
     
     func layout() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -92,5 +93,14 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         collectionInsets.left
+    }
+}
+
+extension LectureViewController {
+    func setCourses(course: Courses) {
+        print(courses)
+        courses = course
+        title = "Лекции / \(courses.course)"
+        print(courses)
     }
 }

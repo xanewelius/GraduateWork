@@ -53,7 +53,7 @@ class LectureCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     
     func configure(with image: Image) {
-        print(image)
+        //print(image)
         titleLabel.text = image.lecture
         descriptionLabel.text = image.description
         imageView.image = UIImage(named: "2")

@@ -46,7 +46,7 @@ private extension CoursesViewController {
     
     func layout() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -69,6 +69,7 @@ extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = images[indexPath.row]
+        lecture.setCourses(course: image)
         collectionView.deselectItem(at: indexPath, animated: true)
         self.navigationController?.pushViewController(self.lecture, animated: true)
     }
@@ -78,6 +79,6 @@ extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        collectionInsets.left
+        collectionInsets.top
     }
 }
