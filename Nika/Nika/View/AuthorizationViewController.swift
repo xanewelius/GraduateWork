@@ -210,8 +210,8 @@ private extension AuthorizationViewController {
     
     @objc func buttonTapped() {
         print("tap")
-        let login = "kuzmin"
-        let password = "Mypassword"
+        let login = ""
+        let password = ""
         if loginField.text == login && passwordField.text == password {
             let tab = TabBarController()
             tab.modalPresentationStyle = .fullScreen

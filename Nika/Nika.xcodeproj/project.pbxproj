@@ -23,6 +23,8 @@
 		406AE97A29C3911C00E44503 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */; };
 		406AE97E29C8D3F700E44503 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97D29C8D3F600E44503 /* CoursesViewController.swift */; };
 		406AE98029D6025800E44503 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97F29D6025800E44503 /* WebViewerController.swift */; };
+		406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */; };
+		406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		406AE97D29C8D3F600E44503 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		406AE97F29D6025800E44503 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
+		406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewCell.swift; sourceTree = "<group>"; };
+		406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,16 +96,12 @@
 		4069DACB29BDF8EE0051B731 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
-				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
-				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
+				406AE98529DA216900E44503 /* CoursesView */,
+				406AE98629DA219800E44503 /* LectureView */,
+				406AE98729DA21B900E44503 /* SettingsView */,
 				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 				406AE97F29D6025800E44503 /* WebViewerController.swift */,
-				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
-				406AE97229C11ABF00E44503 /* SettingsViewController.swift */,
-				406AE97429C11AC000E44503 /* SwitchTableViewCell.swift */,
-				406AE97329C11AC000E44503 /* AppDetailViewController.swift */,
-				406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */,
+				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,6 +121,36 @@
 				4069DAD229BE17A30051B731 /* leonid.mp4 */,
 			);
 			path = video;
+			sourceTree = "<group>";
+		};
+		406AE98529DA216900E44503 /* CoursesView */ = {
+			isa = PBXGroup;
+			children = (
+				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
+				406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */,
+			);
+			path = CoursesView;
+			sourceTree = "<group>";
+		};
+		406AE98629DA219800E44503 /* LectureView */ = {
+			isa = PBXGroup;
+			children = (
+				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
+				406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */,
+			);
+			path = LectureView;
+			sourceTree = "<group>";
+		};
+		406AE98729DA21B900E44503 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
+				406AE97229C11ABF00E44503 /* SettingsViewController.swift */,
+				406AE97429C11AC000E44503 /* SwitchTableViewCell.swift */,
+				406AE97329C11AC000E44503 /* AppDetailViewController.swift */,
+				406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */,
+			);
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +224,7 @@
 			files = (
 				4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */,
 				406AE97E29C8D3F700E44503 /* CoursesViewController.swift in Sources */,
+				406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */,
 				4069DACD29BE07F00051B731 /* Image.swift in Sources */,
 				406AE97629C11AC000E44503 /* SettingsViewController.swift in Sources */,
 				406AE97729C11AC000E44503 /* AppDetailViewController.swift in Sources */,
@@ -206,6 +237,7 @@
 				406AE97829C11AC000E44503 /* SwitchTableViewCell.swift in Sources */,
 				4069DACA29BDF8D30051B731 /* LectureViewController.swift in Sources */,
 				406AE97529C11AC000E44503 /* SettingsTableViewCell.swift in Sources */,
+				406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */,
 				406AE96629BE663100E44503 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
