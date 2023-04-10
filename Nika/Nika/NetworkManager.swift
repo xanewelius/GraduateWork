@@ -5,25 +5,28 @@
 //  Created by Max Kuzmin on 12.03.2023.
 //
 
-import Foundation
+import UIKit
+import Firebase
+import FirebaseStorage
+import FirebaseDatabase
 
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    let urlString = "https://8a0db355-d450-46e8-a23c-8f66ddb721d6.mock.pstmn.io/config"
+    private func configureFB() -> Firestore {
+        var db: Firestore!
+        let settings = FirestoreSettings ()
+        Firestore.firestore().settings = settings
+        db = Firestore.firestore()
+        return db
+    }
     
-    func getInfo() {
-        let url = URL(string: urlString)!
-        let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data else { return }
-            if let config = try? JSONDecoder().decode(Config.self, from: data) {
-                print(config.user)
-            } else {
-                print(error as Any)
-            }
-        }
-        task.resume()
+    func getPost(collection: String, docName: String, completion: @escaping (Document?) -> Void) {
+        let db = configureFB()
+        db.collection(collection).document(docName).getDocument(completion: { (document, error) in
+            guard error == nil else { completion (nil); return }
+            let doc = Document(field1: document?.get("field1") as! String, field2: document?.get("field2") as! String)
+            completion(doc)
+        })
     }
 }

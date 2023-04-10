@@ -44,7 +44,7 @@ private extension LectureViewController {
         //navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: searchTitle)
         //title = "Лекции / \(courses.course)"
         //print(courses)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)

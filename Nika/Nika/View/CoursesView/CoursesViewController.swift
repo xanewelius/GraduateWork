@@ -36,8 +36,9 @@ final class CoursesViewController: UIViewController {
 private extension CoursesViewController {
     func configureView() {
         view.backgroundColor = .white
+        navigationItem.titleView = nil
+        //navigationController?.navigationBar.prefersLargeTitles = true
         title = "Курсы"
-        navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)

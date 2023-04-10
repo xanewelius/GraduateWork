@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class AuthorizationViewController: UIViewController {
     
-    let networkManager = NetworkManager()
+    //let networkManager = NetworkManager()
+    //let coursesVC = CoursesViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         self.termsTextView.delegate = self
+        NetworkManager.shared.getPost(collection: "cars", docName: "model") { doc in
+            guard doc != nil else { return }
+            print(doc?.field1)
+            print(doc?.field2)
+        }
         //NetworkManager.shared.getInfo()
     }
     
@@ -194,7 +201,9 @@ private extension AuthorizationViewController {
                                       message: "Хотите попробовать ещё раз?",
                                       preferredStyle: UIAlertController.Style.alert)
         // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: nil))
+        alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: { _ in
+            self.buttonTapped()
+        } ))
         
         alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
         // show the alert
@@ -210,16 +219,22 @@ private extension AuthorizationViewController {
     
     @objc func buttonTapped() {
         print("tap")
-        let login = ""
-        let password = ""
-        if loginField.text == login && passwordField.text == password {
-            let tab = TabBarController()
-            tab.modalPresentationStyle = .fullScreen
-            present(tab, animated: true)
-        } else {
-            showAlert()
+        guard let email = loginField.text else { return }
+        guard let password = passwordField.text else { return }
+        print(email, password)
+        //        let tab = TabBarController()
+        //        tab.modalPresentationStyle = .fullScreen
+        //        self.present(tab, animated: true)
+        Auth.auth().signIn(withEmail: email, password: password) { [self] result, error in
+            if error == nil {
+                let tab = TabBarController()
+                tab.modalPresentationStyle = .fullScreen
+                self.present(tab, animated: true)
+            } else {
+                print(error!)
+                self.showAlert()
+            }
         }
-        //show(lecture, sender: self)
     }
 }
 
