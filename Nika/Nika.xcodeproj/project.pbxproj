@@ -12,7 +12,7 @@
 		40066F4A29E46E4B00B5F09E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 40066F4929E46E4B00B5F09E /* FirebaseDatabase */; };
 		40066F4C29E46E4B00B5F09E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 40066F4B29E46E4B00B5F09E /* FirebaseFirestore */; };
 		40066F4E29E46E4B00B5F09E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 40066F4D29E46E4B00B5F09E /* FirebaseStorage */; };
-		40066F5029E4784C00B5F09E /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40066F4F29E4784B00B5F09E /* Document.swift */; };
+		40066F5229F2AF2F00B5F09E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */; };
 		4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB529BDEA7E0051B731 /* AppDelegate.swift */; };
 		4069DAB829BDEA7E0051B731 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */; };
 		4069DABF29BDEA800051B731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4069DABE29BDEA800051B731 /* Assets.xcassets */; };
@@ -31,11 +31,10 @@
 		406AE98029D6025800E44503 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE97F29D6025800E44503 /* WebViewerController.swift */; };
 		406AE98229D7C2B800E44503 /* CoursesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */; };
 		406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */; };
-		4082BDEB29E4670F00A162F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4082BDEA29E4670F00A162F2 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		40066F4F29E4784B00B5F09E /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4069DAB229BDEA7E0051B731 /* Nika.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nika.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4069DAB529BDEA7E0051B731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +56,6 @@
 		406AE97F29D6025800E44503 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewCell.swift; sourceTree = "<group>"; };
 		406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureCollectionViewCell.swift; sourceTree = "<group>"; };
-		4082BDEA29E4670F00A162F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,13 +96,12 @@
 				4069DAB529BDEA7E0051B731 /* AppDelegate.swift */,
 				4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */,
 				406AE96329BE647200E44503 /* NetworkManager.swift */,
-				40066F4F29E4784B00B5F09E /* Document.swift */,
 				4069DAD029BE0DEC0051B731 /* Model */,
 				4069DACB29BDF8EE0051B731 /* View */,
 				4069DAD129BE178E0051B731 /* video */,
 				4069DABE29BDEA800051B731 /* Assets.xcassets */,
 				4069DAC329BDEA800051B731 /* Info.plist */,
-				4082BDEA29E4670F00A162F2 /* GoogleService-Info.plist */,
+				40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */,
 			);
 			path = Nika;
 			sourceTree = "<group>";
@@ -112,10 +109,10 @@
 		4069DACB29BDF8EE0051B731 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4082BDE929E4662000A162F2 /* AuthorizationView */,
-				406AE98529DA216900E44503 /* CoursesView */,
-				406AE98629DA219800E44503 /* LectureView */,
-				406AE98729DA21B900E44503 /* SettingsView */,
+				4082BDE929E4662000A162F2 /* Authorization */,
+				406AE98529DA216900E44503 /* Courses */,
+				406AE98629DA219800E44503 /* Lecture */,
+				406AE98729DA21B900E44503 /* Settings */,
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
 			);
 			path = View;
@@ -138,25 +135,25 @@
 			path = video;
 			sourceTree = "<group>";
 		};
-		406AE98529DA216900E44503 /* CoursesView */ = {
+		406AE98529DA216900E44503 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
 				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
 				406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */,
 			);
-			path = CoursesView;
+			path = Courses;
 			sourceTree = "<group>";
 		};
-		406AE98629DA219800E44503 /* LectureView */ = {
+		406AE98629DA219800E44503 /* Lecture */ = {
 			isa = PBXGroup;
 			children = (
 				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
 				406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */,
 			);
-			path = LectureView;
+			path = Lecture;
 			sourceTree = "<group>";
 		};
-		406AE98729DA21B900E44503 /* SettingsView */ = {
+		406AE98729DA21B900E44503 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
@@ -165,16 +162,16 @@
 				406AE97329C11AC000E44503 /* AppDetailViewController.swift */,
 				406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */,
 			);
-			path = SettingsView;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		4082BDE929E4662000A162F2 /* AuthorizationView */ = {
+		4082BDE929E4662000A162F2 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
 				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 				406AE97F29D6025800E44503 /* WebViewerController.swift */,
 			);
-			path = AuthorizationView;
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4069DABF29BDEA800051B731 /* Assets.xcassets in Resources */,
-				4082BDEB29E4670F00A162F2 /* GoogleService-Info.plist in Resources */,
+				40066F5229F2AF2F00B5F09E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +268,6 @@
 				4069DACF29BE0AED0051B731 /* TabBarController.swift in Sources */,
 				406AE97829C11AC000E44503 /* SwitchTableViewCell.swift in Sources */,
 				4069DACA29BDF8D30051B731 /* LectureViewController.swift in Sources */,
-				40066F5029E4784C00B5F09E /* Document.swift in Sources */,
 				406AE97529C11AC000E44503 /* SettingsTableViewCell.swift in Sources */,
 				406AE98429DA16EE00E44503 /* LectureCollectionViewCell.swift in Sources */,
 				406AE96629BE663100E44503 /* Model.swift in Sources */,
@@ -408,8 +404,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,8 +431,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

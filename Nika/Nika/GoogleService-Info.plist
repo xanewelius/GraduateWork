@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:1030524962513:ios:98202d9b0ff4c7743367f0</string>
+	<key>DATABASE_URL</key>
+	<string>https://nika-df934-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

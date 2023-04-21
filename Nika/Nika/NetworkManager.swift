@@ -6,27 +6,31 @@
 //
 
 import UIKit
+import Foundation
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
 
-final class NetworkManager {
+class NetworkManager {
     static let shared = NetworkManager()
-    
-    private func configureFB() -> Firestore {
-        var db: Firestore!
-        let settings = FirestoreSettings ()
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        return db
-    }
-    
-    func getPost(collection: String, docName: String, completion: @escaping (Document?) -> Void) {
-        let db = configureFB()
-        db.collection(collection).document(docName).getDocument(completion: { (document, error) in
-            guard error == nil else { completion (nil); return }
-            let doc = Document(field1: document?.get("field1") as! String, field2: document?.get("field2") as! String)
-            completion(doc)
-        })
+
+    private let database = Database.database().reference()
+
+    func fetchData(completion: @escaping ([Course]) -> Void) {
+        let coursesRef = database.child("Courses")
+        coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe
+            var courses = [Course]()
+            for child in snapshot.children {
+                guard let snap = child as? DataSnapshot,
+                      let courseDict = snap.value as? [String: Any],
+                      let name = courseDict["name"] as? String,
+                      let img = courseDict["img"] as? String else {
+                    continue
+                }
+                let course = Course(id: snap.key, name: name, img: img)
+                courses.append(course)
+            }
+            completion(courses)
+        }
     }
 }

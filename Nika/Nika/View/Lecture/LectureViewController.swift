@@ -78,6 +78,7 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let url = URL(string: "file:///Users/xanew/Downloads/leonid.mp4") else { return }
+        print(url)
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
@@ -97,10 +98,7 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 extension LectureViewController {
-    func setCourses(course: Courses) {
-        print(courses)
-        courses = course
-        title = "Лекции / \(courses.course)"
-        print(courses)
+    func setCourse(course: Course) {
+        title = "Лекции / \(course.name)"
     }
 }

@@ -9,25 +9,34 @@ import UIKit
 
 final class CoursesViewController: UIViewController {
     
-    private let images = Courses.getImageList()
     private let lecture = LectureViewController()
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
+    private var courses: [Course] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         configureView()
+    }
+    
+    private func fetchData() {
+        NetworkManager.shared.fetchData { [weak self] courses in
+            self?.courses = courses
+            self?.collectionView.reloadData()
+        }
     }
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 350, height: 80)
+        layout.itemSize = CGSize(width: 350, height: 170)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
         collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .automatic
         return collectionView
     }()
@@ -57,20 +66,23 @@ private extension CoursesViewController {
 
 extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        images.count
+        print(courses.count)
+        return courses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CoursesCollectionViewCell else { return UICollectionViewCell() }
-        let image = images[indexPath.row]
-        //print(images)
-        cell.configure(with: image)
+        
+        let course = courses[indexPath.item]
+        cell.configure(with: course)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let image = images[indexPath.row]
-        lecture.setCourses(course: image)
+        
+        let course = courses[indexPath.item]
+        lecture.setCourse(course: course)
         collectionView.deselectItem(at: indexPath, animated: true)
         self.navigationController?.pushViewController(self.lecture, animated: true)
     }

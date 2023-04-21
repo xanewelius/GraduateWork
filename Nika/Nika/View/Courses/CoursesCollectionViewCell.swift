@@ -10,8 +10,6 @@ import UIKit
 class CoursesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let reuseIdentifier = "MyCollectionViewCell"
     private let images = Courses.getImageList()
     
     let titleLabel: UILabel = {
@@ -30,13 +28,14 @@ class CoursesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-//    let imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.layer.cornerRadius = 8
-//        imageView.clipsToBounds = true
-//        return imageView
-//    }()
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     // MARK: - Initialization
     
@@ -51,11 +50,10 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     
-    func configure(with image: Courses) {
-        //print(image)
-        titleLabel.text = image.course
-        descriptionLabel.text = image.description
-        //imageView.image = UIImage(named: images.filename)
+    func configure(with course: Course) {
+        titleLabel.text = course.name
+        descriptionLabel.text = course.id
+        imageView.image = UIImage(named: "3")
     }
 }
 
@@ -66,7 +64,7 @@ private extension CoursesCollectionViewCell {
         contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
-        //contentView.addSubview(imageView)
+        contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
         layout()
@@ -74,14 +72,21 @@ private extension CoursesCollectionViewCell {
     
     func layout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            imageView.heightAnchor.constraint(equalToConstant: 90),
+            
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }
+
+
