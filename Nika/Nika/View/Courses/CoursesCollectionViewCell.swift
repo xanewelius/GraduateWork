@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class CoursesCollectionViewCell: UICollectionViewCell {
     
@@ -49,11 +50,12 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configuration
-    
     func configure(with course: Course) {
         titleLabel.text = course.name
         descriptionLabel.text = course.id
         imageView.image = UIImage(named: "3")
+        let url = course.img
+        Nuke.loadImage(with: url, into: imageView)
     }
 }
 
@@ -72,17 +74,16 @@ private extension CoursesCollectionViewCell {
     
     func layout() {
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            imageView.heightAnchor.constraint(equalToConstant: 90),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            imageView.heightAnchor.constraint(equalToConstant: 130),
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
