@@ -16,7 +16,7 @@ class NetworkManager {
 
     private let database = Database.database().reference()
 
-    func fetchData(completion: @escaping ([Course]) -> Void) {
+    func fetchCourses(completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
         coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe
             var courses = [Course]()
@@ -31,6 +31,26 @@ class NetworkManager {
                 courses.append(course)
             }
             completion(courses)
+        }
+    }
+    
+    func fetchLectures(for courseId: String, completion: @escaping ([Lecture]) -> Void) {
+        let lecturesRef = database.child("Lectures").child(courseId)
+        lecturesRef.observe(.value) { snapshot in
+            var lectures = [Lecture]()
+            for child in snapshot.children {
+                guard let snap = child as? DataSnapshot,
+                      let lectureDict = snap.value as? [String: Any],
+                      let name = lectureDict["name"] as? String,
+                      let img = lectureDict["img"] as? String,
+                      let description = lectureDict["description"] as? String,
+                      let link = lectureDict["link"] as? String else {
+                    continue
+                }
+                let lecture = Lecture(id: snap.key, name: name, description: description, link: link, img: img)
+                lectures.append(lecture)
+            }
+            completion(lectures)
         }
     }
 }

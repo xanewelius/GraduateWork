@@ -11,8 +11,6 @@ import Nuke
 class CoursesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    private let images = Courses.getImageList()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -55,7 +53,14 @@ class CoursesCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = course.id
         imageView.image = UIImage(named: "3")
         let url = course.img
-        Nuke.loadImage(with: url, into: imageView)
+        Nuke.loadImage(with: url, into: imageView) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                self.imageView.image = UIImage(named: "3")
+            }
+        }
     }
 }
 

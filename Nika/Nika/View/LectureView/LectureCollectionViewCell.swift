@@ -6,14 +6,11 @@
 //
 
 import UIKit
+import Nuke
 
 class LectureCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let reuseIdentifier = "MyCollectionViewCell"
-    private let images = Courses.getImageList()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -51,17 +48,23 @@ class LectureCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configuration
-    
-    func configure(with image: Image) {
-        //print(image)
-        titleLabel.text = image.lecture
-        descriptionLabel.text = image.description
+    func configure(with lecture: Lecture) {
+        titleLabel.text = lecture.name
+        descriptionLabel.text = lecture.description
         imageView.image = UIImage(named: "2")
+        let url = lecture.img
+        Nuke.loadImage(with: url, into: imageView) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                self.imageView.image = UIImage(named: "2")
+            }
+        }
     }
 }
 
 // MARK: - Layout
-
 private extension LectureCollectionViewCell {
     func configureView() {
         contentView.backgroundColor = .systemGray6
@@ -74,21 +77,21 @@ private extension LectureCollectionViewCell {
     }
     
     func layout() {
-            NSLayoutConstraint.activate([
-                imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-                imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 100),
-                imageView.widthAnchor.constraint(equalToConstant: 100),
-                
-                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                
-                descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-                descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 120),
+            imageView.widthAnchor.constraint(equalToConstant: 120),
+            
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
+    }
 }
 

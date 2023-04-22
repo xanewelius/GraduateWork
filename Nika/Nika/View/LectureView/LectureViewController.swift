@@ -1,53 +1,53 @@
 //
-//  CoursesViewController.swift
+//  LecturViewController.swift
 //  Nika
 //
-//  Created by Max Kuzmin on 20.03.2023.
+//  Created by Max Kuzmin on 12.03.2023.
 //
 
 import UIKit
+import AVKit
 
-final class CoursesViewController: UIViewController {
+final class LectureViewController: UIViewController {
     
-    private let lecture = LectureViewController()
+    //MARK: - Variables
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
-    private var courses: [Course] = []
+    private var lectures: [Lecture] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchData()
-        configureView()
-    }
-    
-    private func fetchData() {
-        NetworkManager.shared.fetchData { [weak self] courses in
-            self?.courses = courses
-            self?.collectionView.reloadData()
-        }
-    }
-    
+    //MARK: - UIComponents
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 350, height: 175)
+        layout.itemSize = CGSize(width: 350, height: 120)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
-        collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = .systemBackground
+        collectionView.register(LectureCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .automatic
         return collectionView
     }()
+    
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureView()
+    }
+    
+    func fetchData(course: Course) {
+        title = "Лекции / \(course.name)"
+        NetworkManager.shared.fetchLectures(for: course.id) { [weak self] lectures in
+            self?.lectures = lectures
+            self?.collectionView.reloadData()
+        }
+    }
 }
 
-private extension CoursesViewController {
+private extension LectureViewController {
     func configureView() {
         view.backgroundColor = .white
-        navigationItem.titleView = nil
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Курсы"
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
@@ -64,27 +64,31 @@ private extension CoursesViewController {
     }
 }
 
-extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+// MARK: - CollectionView
+
+extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(courses.count)
-        return courses.count
+        lectures.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CoursesCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LectureCollectionViewCell else { return UICollectionViewCell() }
         
-        let course = courses[indexPath.item]
-        cell.configure(with: course)
-        
+        let lecture = lectures[indexPath.row]
+        cell.configure(with: lecture)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = URL(string: "file:///Users/xanew/Downloads/leonid.mp4") else { return }
+        print(url)
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
         
-        let course = courses[indexPath.item]
-        lecture.setCourse(course: course)
-        collectionView.deselectItem(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(self.lecture, animated: true)
+        present(playerViewController, animated: true) {
+            player.play()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -92,6 +96,12 @@ extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        collectionInsets.top
+        collectionInsets.left
+    }
+}
+
+extension LectureViewController {
+    func setCourse(course: Course) {
+        
     }
 }

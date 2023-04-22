@@ -119,10 +119,10 @@
 		4069DACB29BDF8EE0051B731 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4082BDE929E4662000A162F2 /* Authorization */,
-				406AE98529DA216900E44503 /* Courses */,
-				406AE98629DA219800E44503 /* Lecture */,
-				406AE98729DA21B900E44503 /* Settings */,
+				4082BDE929E4662000A162F2 /* AuthorizationView */,
+				406AE98529DA216900E44503 /* CoursesView */,
+				406AE98629DA219800E44503 /* LectureView */,
+				406AE98729DA21B900E44503 /* SettingsView */,
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
 			);
 			path = View;
@@ -145,25 +145,25 @@
 			path = video;
 			sourceTree = "<group>";
 		};
-		406AE98529DA216900E44503 /* Courses */ = {
+		406AE98529DA216900E44503 /* CoursesView */ = {
 			isa = PBXGroup;
 			children = (
 				406AE97D29C8D3F600E44503 /* CoursesViewController.swift */,
 				406AE98129D7C2B800E44503 /* CoursesCollectionViewCell.swift */,
 			);
-			path = Courses;
+			path = CoursesView;
 			sourceTree = "<group>";
 		};
-		406AE98629DA219800E44503 /* Lecture */ = {
+		406AE98629DA219800E44503 /* LectureView */ = {
 			isa = PBXGroup;
 			children = (
 				4069DAC929BDF8D30051B731 /* LectureViewController.swift */,
 				406AE98329DA16EE00E44503 /* LectureCollectionViewCell.swift */,
 			);
-			path = Lecture;
+			path = LectureView;
 			sourceTree = "<group>";
 		};
-		406AE98729DA21B900E44503 /* Settings */ = {
+		406AE98729DA21B900E44503 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
 				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
@@ -172,16 +172,16 @@
 				406AE97329C11AC000E44503 /* AppDetailViewController.swift */,
 				406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */,
 			);
-			path = Settings;
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
-		4082BDE929E4662000A162F2 /* Authorization */ = {
+		4082BDE929E4662000A162F2 /* AuthorizationView */ = {
 			isa = PBXGroup;
 			children = (
 				406AE96F29C10F0B00E44503 /* AuthorizationViewController.swift */,
 				406AE97F29D6025800E44503 /* WebViewerController.swift */,
 			);
-			path = Authorization;
+			path = AuthorizationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,9 +424,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xanew.Nika;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -451,9 +454,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xanew.Nika;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

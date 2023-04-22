@@ -12,10 +12,12 @@ struct Course: Codable {
     var id: String
     var name: String
     var img: String
-    //var lectures: [Lecture]
 }
 
 struct Lecture: Codable {
     var id: String
-    var videoLink: String
+    var name: String
+    var description: String
+    var link: String
+    var img: String
 }
