@@ -21,9 +21,9 @@
 ### Stack
 
 + UIKit
-+ AVKit - plays video-lectures from server
-+ [Nuke](https://github.com/kean/Nuke) - uploading photo from server
-+ [Firebase](https://firebase.google.com/) - bases of app
++ AVKit - plays video-lectures
++ [Nuke](https://github.com/kean/Nuke) - uploading photo
++ [Firebase](https://firebase.google.com/)
   + Firebase Realtime Database
   + Firebase Authentication 
 + MVC
