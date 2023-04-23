@@ -11,7 +11,6 @@ final class CoursesViewController: UIViewController {
     
     private let lecture = LectureViewController()
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    
     private var courses: [Course] = []
     
     override func viewDidLoad() {

@@ -13,9 +13,9 @@ import FirebaseDatabase
 
 class NetworkManager {
     static let shared = NetworkManager()
-
+    
     private let database = Database.database().reference()
-
+    
     func fetchCourses(completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
         coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe

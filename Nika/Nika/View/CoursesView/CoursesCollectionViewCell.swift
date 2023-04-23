@@ -37,7 +37,6 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Initialization
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -77,7 +76,6 @@ class CoursesCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Layout
-
 private extension CoursesCollectionViewCell {
     func configureView() {
         contentView.backgroundColor = .systemGray6

@@ -11,9 +11,6 @@ import FirebaseDatabase
 
 final class AuthorizationViewController: UIViewController {
     
-    //let networkManager = NetworkManager()
-    //let coursesVC = CoursesViewController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()

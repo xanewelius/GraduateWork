@@ -7,7 +7,6 @@
 
 import UIKit
 import Nuke
-import NukeExtensions
 
 class LectureCollectionViewCell: UICollectionViewCell {
     
@@ -38,7 +37,6 @@ class LectureCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Initialization
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()

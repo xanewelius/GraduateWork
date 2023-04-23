@@ -7,13 +7,11 @@
 
 import UIKit
 import AVKit
-import NukeVideo
 
 final class LectureViewController: UIViewController {
     
     //MARK: - Variables
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    
     private var lectures: [Lecture] = []
     
     //MARK: - UIComponents
@@ -66,7 +64,6 @@ private extension LectureViewController {
 }
 
 // MARK: - CollectionView
-
 extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         lectures.count
@@ -77,6 +74,7 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let lecture = lectures[indexPath.row]
         cell.configure(with: lecture)
+        
         return cell
     }
     
@@ -84,8 +82,7 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
         let lecture = lectures[indexPath.row]
         let lectureURL = lecture.link
         
-        //ex: https://drive.google.com/file/d/1tUk6dSavwL4-emKRVBFEsznTO916W1hU/view?usp=share_link
-        //final: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
+        //lectureURL: https://drive.google.com/file/d/1tUk6dSavwL4-emKRVBFEsznTO916W1hU/view?usp=share_link
         let pattern = "/d/([a-zA-Z0-9-_]+)"
         guard let regex = try? NSRegularExpression(pattern: pattern),
               let match = regex.firstMatch(in: lectureURL, range: NSRange(location: 0, length: lectureURL.utf16.count)),
@@ -93,6 +90,7 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
             // failed to extract id from url
             return
         }
+        //fileID: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
         let fileID = String(lectureURL[range])
         
         let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fileID)")
@@ -117,11 +115,5 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         collectionInsets.left
-    }
-}
-
-extension LectureViewController {
-    func setCourse(course: Course) {
-        
     }
 }

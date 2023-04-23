@@ -37,7 +37,6 @@ class WebViewerController: UIViewController {
     private func setupUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(didTapDone))
         navigationController?.navigationBar.backgroundColor = .secondarySystemBackground
-        
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -47,7 +46,6 @@ class WebViewerController: UIViewController {
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-
     }
     
     @objc private func didTapDone() {
