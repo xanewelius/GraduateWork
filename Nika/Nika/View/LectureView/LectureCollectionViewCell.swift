@@ -7,6 +7,7 @@
 
 import UIKit
 import Nuke
+import NukeExtensions
 
 class LectureCollectionViewCell: UICollectionViewCell {
     
@@ -51,16 +52,28 @@ class LectureCollectionViewCell: UICollectionViewCell {
     func configure(with lecture: Lecture) {
         titleLabel.text = lecture.name
         descriptionLabel.text = lecture.description
-        imageView.image = UIImage(named: "2")
+        self.imageView.image = UIImage(named: "2")
         let url = lecture.img
-        Nuke.loadImage(with: url, into: imageView) { result in
-            switch result {
-            case .success:
-                break
-            case .failure:
+        async {
+            do {
+                let image = try await loadImage(url: url)
+                self.imageView.image = image
+            } catch {
+                print(error)
                 self.imageView.image = UIImage(named: "2")
             }
         }
+    }
+
+    func loadImage(url: String) async throws -> UIImage {
+        let task = Task.init(priority: .high) {
+            let task = ImagePipeline.shared.imageTask(with: URL(string: url)!)
+            for await progress in task.progress {
+                print("Updated progress: ", progress)
+            }
+            return try await task.image
+        }
+        return try await task.value
     }
 }
 

@@ -165,7 +165,7 @@ private extension AuthorizationViewController {
         NSLayoutConstraint.activate([
             logo.bottomAnchor.constraint(equalTo: labelLogin.topAnchor),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logo.heightAnchor.constraint(equalToConstant: 170),
+            logo.heightAnchor.constraint(equalToConstant: 220),
             labelLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             labelLoginDescription.topAnchor.constraint(equalTo: labelLogin.bottomAnchor, constant: 10),
             labelLoginDescription.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -190,21 +190,6 @@ private extension AuthorizationViewController {
 }
 
 private extension AuthorizationViewController {
-    func showAlert() {
-        // create the alert
-        let alert = UIAlertController(title: "Неправильный логин или пароль",
-                                      message: "Хотите попробовать ещё раз?",
-                                      preferredStyle: UIAlertController.Style.alert)
-        // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: { _ in
-            self.buttonTapped()
-        } ))
-        
-        alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     @objc private func togglePasswordVisibility() {
         // Изменяем состояние кнопки и свойство isSecureTextEntry
         passwordField.isSecureTextEntry.toggle()
@@ -217,19 +202,46 @@ private extension AuthorizationViewController {
         guard let email = loginField.text else { return }
         guard let password = passwordField.text else { return }
         print(email, password)
-                let tab = TabBarController()
-                tab.modalPresentationStyle = .fullScreen
-                self.present(tab, animated: true)
+        let tab = TabBarController()
+        tab.modalPresentationStyle = .fullScreen
+        self.present(tab, animated: true)
+        
         Auth.auth().signIn(withEmail: email, password: password) { [self] result, error in
             if error == nil {
                 let tab = TabBarController()
                 tab.modalPresentationStyle = .fullScreen
                 self.present(tab, animated: true)
             } else {
-                print(error!)
-                self.showAlert()
+                print(error!.localizedDescription)
+                if email == "" || password == "" {
+                    self.showAlert(title: "Введите логин и пароль", message: "Хотите повторить еще раз?")
+                }
+                switch error!.localizedDescription {
+                case "The password is invalid or the user does not have a password.":
+                    self.showAlert(title: "Неправильный пароль", message: "Хотите повторить еще раз?")
+                case "The email address is badly formatted.":
+                    self.showAlert(title: "Неправильная почта", message: "Хотите повторить еще раз?")
+                case "There is no user record corresponding to this identifier. The user may have been deleted.":
+                    self.showAlert(title: "Данного пользователя не существует", message: "Хотите повторить еще раз?")
+                default:
+                    self.showAlert(title: "Нет подключения к интернету", message: "Хотите повторить еще раз?")
+                }
             }
         }
+    }
+    
+    func showAlert(title: String, message: String) {
+        // create the alert
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: UIAlertController.Style.alert)
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default,handler: { _ in
+            self.buttonTapped()
+        } ))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.cancel, handler: nil))
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -255,6 +267,3 @@ extension AuthorizationViewController: UITextViewDelegate {
         }
     }
 }
-
-
-

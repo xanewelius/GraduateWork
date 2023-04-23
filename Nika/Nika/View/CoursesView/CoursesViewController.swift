@@ -40,6 +40,15 @@ final class CoursesViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .automatic
         return collectionView
     }()
+    
+    private let coursesAvailable: UILabel = {
+        let label = UILabel()
+        label.text = "Нет доступных курсов"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
+        return label
+    }()
 }
 
 private extension CoursesViewController {
@@ -51,11 +60,15 @@ private extension CoursesViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
+        view.addSubview(coursesAvailable)
         layout()
     }
     
     func layout() {
         NSLayoutConstraint.activate([
+            coursesAvailable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            coursesAvailable.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -67,6 +80,11 @@ private extension CoursesViewController {
 extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(courses.count)
+        if courses.count == 0 {
+            coursesAvailable.isHidden = false
+        } else {
+            coursesAvailable.isHidden = true
+        }
         return courses.count
     }
     

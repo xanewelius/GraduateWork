@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import NukeVideo
 
 final class LectureViewController: UIViewController {
     
@@ -80,14 +81,33 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = URL(string: "file:///Users/xanew/Downloads/leonid.mp4") else { return }
-        print(url)
-        let player = AVPlayer(url: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
+        let lecture = lectures[indexPath.row]
+        let lectureURL = lecture.link
         
+        //ex: https://drive.google.com/file/d/1tUk6dSavwL4-emKRVBFEsznTO916W1hU/view?usp=share_link
+        //final: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
+        let pattern = "/d/([a-zA-Z0-9-_]+)"
+        guard let regex = try? NSRegularExpression(pattern: pattern),
+              let match = regex.firstMatch(in: lectureURL, range: NSRange(location: 0, length: lectureURL.utf16.count)),
+              let range = Range(match.range(at: 1), in: lectureURL) else {
+            // failed to extract id from url
+            return
+        }
+        let fileID = String(lectureURL[range])
+        
+        let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fileID)")
+
+        // Create a player item
+        let playerViewController = AVPlayerViewController()
+        let playerItem = AVPlayerItem(url: videoURL!)
+
+        // Create a player
+        let player = AVPlayer(playerItem: playerItem)
+        playerViewController.player = player
+
+        // Present the player view controller
         present(playerViewController, animated: true) {
-            player.play()
+            playerViewController.player!.play()
         }
     }
     
