@@ -1,6 +1,6 @@
 # Refresher courses 76%
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Amatic+SC&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=%D0%BF%D1%80%D0%BE+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83;%D0%B8%D0%BB%D0%B8+%D1%87%D1%82%D0%BE-%D1%82%D0%BE+%D1%82%D0%B0%D0%BC+%D0%B5%D1%89%D0%B5)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
 ### Preview
 <p>
