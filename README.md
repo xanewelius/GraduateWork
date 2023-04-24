@@ -22,7 +22,7 @@
 
 + UIKit
 + AVKit - plays video-lectures
-+ [Nuke](https://github.com/kean/Nuke) - uploading photo
++ [Nuke](https://github.com/kean/Nuke) v12.1.0 - uploading photo
 + [Firebase](https://firebase.google.com/)
   + Firebase Realtime Database
   + Firebase Authentication 
