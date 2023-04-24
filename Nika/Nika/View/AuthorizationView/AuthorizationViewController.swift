@@ -144,7 +144,7 @@ final class AuthorizationViewController: UIViewController {
 
 private extension AuthorizationViewController {
     func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(logo)
         view.addSubview(labelLogin)
         view.addSubview(labelLoginDescription)

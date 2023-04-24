@@ -24,7 +24,6 @@ final class LectureViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
         collectionView.register(LectureCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .automatic
         return collectionView
     }()
@@ -46,7 +45,7 @@ final class LectureViewController: UIViewController {
 
 private extension LectureViewController {
     func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)

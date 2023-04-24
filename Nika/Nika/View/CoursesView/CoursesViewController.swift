@@ -52,7 +52,7 @@ final class CoursesViewController: UIViewController {
 
 private extension CoursesViewController {
     func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.titleView = nil
         //navigationController?.navigationBar.prefersLargeTitles = true
         title = "Курсы"

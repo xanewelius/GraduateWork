@@ -22,8 +22,9 @@ class LectureCollectionViewCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .light)
+        label.contentMode = .top
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
+        label.numberOfLines = 5
         return label
     }()
     
@@ -89,19 +90,19 @@ private extension LectureCollectionViewCell {
     
     func layout() {
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 120),
-            imageView.widthAnchor.constraint(equalToConstant: 120),
-            
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            imageView.widthAnchor.constraint(equalToConstant: 150),
         ])
     }
 }
