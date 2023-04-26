@@ -24,7 +24,6 @@ final class ProfileDetailViewController: UIViewController {
     private let nameTitle: UILabel = {
         let label = UILabel()
         label.text = "ФИО"
-        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,7 +39,6 @@ final class ProfileDetailViewController: UIViewController {
     private let specialityTitle: UILabel = {
         let label = UILabel()
         label.text = "Номер"
-        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -57,7 +55,7 @@ final class ProfileDetailViewController: UIViewController {
 extension ProfileDetailViewController {
     
     private func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(imageProfile)
         view.addSubview(nameTitle)
         view.addSubview(nameLabel)

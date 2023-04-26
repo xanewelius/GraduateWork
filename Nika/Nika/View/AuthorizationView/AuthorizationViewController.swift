@@ -11,8 +11,11 @@ import FirebaseDatabase
 
 final class AuthorizationViewController: UIViewController {
     
+    private let settings = SwitchTableViewCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        settings.checkForSwitchPreference()
         configureView()
         self.termsTextView.delegate = self
     }

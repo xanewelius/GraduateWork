@@ -28,7 +28,6 @@ class SwitchTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
-        checkForSwitchPreference()
     }
     
     required init?(coder: NSCoder) {
@@ -67,10 +66,17 @@ class SwitchTableViewCell: UITableViewCell {
     func switchDidTap() {
         if mySwitch.isOn {
             print("IS ON")
-            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            for window in windowScene.windows {
+                window.overrideUserInterfaceStyle = .dark
+            }
             //settingsView.myTitle.text = "anf435s"
         } else {
             print("IS OFF")
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            for window in windowScene.windows {
+                window.overrideUserInterfaceStyle = .light
+            }
             //settingsView.myTitle.text = "anf124s"
         }
         userDefaultsConfig()
@@ -86,7 +92,7 @@ private extension SwitchTableViewCell {
     }
 }
 
-private extension SwitchTableViewCell {
+extension SwitchTableViewCell {
     func userDefaultsConfig() {
         if mySwitch.isOn {
             defaults.set(mySwitch.isOn, forKey: "setSwitch")
@@ -98,8 +104,10 @@ private extension SwitchTableViewCell {
     func checkForSwitchPreference() {
         if defaults.object(forKey: "setSwitch") != nil {
             mySwitch.isOn = defaults.bool(forKey: "setSwitch")
+            switchDidTap()
         } else {
             mySwitch.isOn = defaults.bool(forKey: "setSwitch")
+            switchDidTap()
         }
     }
 }

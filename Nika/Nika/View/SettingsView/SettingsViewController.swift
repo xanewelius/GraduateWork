@@ -59,9 +59,40 @@ final class SettingsViewController: UIViewController {
     let myTitle: UILabel = {
         let label = UILabel()
         label.text = "Настройки"
-        label.textColor = .black
         return label
     }()
+}
+
+private extension SettingsViewController {
+    func configureView() {
+        title = "Настройки"
+        view.backgroundColor = .systemBackground
+        //navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: myTitle)
+        tableView.frame = view.bounds
+        view.addSubview(tableView)
+        //models.append(.switchCell(model: SettingsSwitchOption(title: "Dark", handler: {
+            
+        //})))
+        models.append(.staticCell(model: SettingsOption(title: "Пользователь") {
+            self.navigationController?.pushViewController(self.profileDetailViewController, animated: true)
+        }))
+        models.append(.staticCell(model: SettingsOption(title: "Информация") {
+            self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
+        }))
+        //table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
+        models.append(.switchCell(model: SettingsSwitchOption(title: "Dark mode", handler: {
+            
+        })))
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        layout()
+    }
+    
+    func layout() {
+        NSLayoutConstraint.activate([
+            
+        ])
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -99,29 +130,4 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-private extension SettingsViewController {
-    func configureView() {
-        title = "Настройки"
-        //navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: myTitle)
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
-        //models.append(.switchCell(model: SettingsSwitchOption(title: "Dark", handler: {
-            
-        //})))
-        models.append(.staticCell(model: SettingsOption(title: "Пользователь") {
-            self.navigationController?.pushViewController(self.profileDetailViewController, animated: true)
-        }))
-        models.append(.staticCell(model: SettingsOption(title: "Информация") {
-            self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
-        }))
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        layout()
-    }
-    
-    func layout() {
-        NSLayoutConstraint.activate([
-            
-        ])
-    }
-}
+
