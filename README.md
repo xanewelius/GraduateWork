@@ -2,7 +2,7 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
-*Refresher courses* program working with firebase and realtime database (JSON model)
+*Refresher courses* program working with firebase and real-time database (JSON model). Using a real-time database, a user can be given a course that contains lectures that he can watch without downloading to his phone
 
 ### Preview
 <p>
@@ -17,6 +17,7 @@
 + update courses in real time (when course is added to user)
 + adding (registration) of user occurs through site
 + adding new courses and lectures to course occurs through site
++ Dark/Light theme
 
 ### Stack
 
