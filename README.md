@@ -2,7 +2,7 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
-*Refresher courses* program working with firebase and real-time database (JSON model). Using a real-time database, a user can be given a course that contains lectures that he can watch without downloading to his phone
+*Refresher courses* program that works with [Firebase](https://firebase.google.com/) and a real-time database (JSON model). Each new user registers on the site (maybe later I will add registration (*≧▽≦) ) in Firebase Authentication and, accordingly, in the Firebase Real-time database. Using a database, the user can be provided with a course containing lectures that he can watch without downloading to his phone.
 
 ### Preview
 <p>
@@ -14,9 +14,9 @@
 ### Available
 
 + auth users
-+ update courses in real time (when course is added to user)
-+ adding (registration) of user occurs through site
++ adding (registration) of user occurs through site firebase
 + adding new courses and lectures to course occurs through site
++ update courses in real time (when course is added to user)
 + Dark/Light theme
 
 ### Stack
@@ -25,6 +25,6 @@
 + AVKit - plays video-lectures
 + [Nuke](https://github.com/kean/Nuke) v12.1.0 - uploading photo
 + [Firebase](https://firebase.google.com/)
-  + Firebase Realtime Database
+  + Firebase Real-time Database
   + Firebase Authentication 
 + MVC
