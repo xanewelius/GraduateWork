@@ -1,8 +1,8 @@
-# Refresher courses 76%
+# Refresher courses 78%
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
-*Refresher courses* program that works with [Firebase](https://firebase.google.com/) and a real-time database (JSON model). Each new user registers on the site (maybe later I will add registration (*≧▽≦) ) in Firebase Authentication and, accordingly, in the Firebase Real-time database. Using a database, the user can be provided with a course containing lectures that he can watch without downloading to his phone.
+*Refresher courses* program that works with [Firebase](https://firebase.google.com/) and Firebase real-time database (JSON model). Each new user registers on the site (maybe later I will add registration (*≧▽≦) ) in Firebase Authentication and, accordingly, in the Firebase Real-time database. Using a database, the user can be provided with a course containing lectures that he can watch without downloading to his phone.
 
 ### Preview
 <p>
