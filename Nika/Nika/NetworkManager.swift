@@ -10,15 +10,39 @@ import Foundation
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
+import FirebaseAuth
 
 class NetworkManager {
     static let shared = NetworkManager()
     
     private let database = Database.database().reference()
     
+    func fetchUsers(completion: @escaping ([User]) -> Void) {
+        let userUID = Auth.auth().currentUser!.uid
+        print(userUID)
+        
+        let usersRef = database.child("Users")
+        usersRef.observe(.value) { snapshot in
+            var users = [User]()
+            for child in snapshot.children {
+                guard let snap = child as? DataSnapshot,
+                      let userDict = snap.value as? [String: Any],
+                      let name = userDict["name"] as? String,
+                      let courses = userDict["courses"] as? String else {
+                    continue
+                }
+                let user = User(id: snap.key, name: name, courses: courses)
+                users.append(user)
+                print(user)
+            }
+            completion(users)
+        }
+    }
+    
+    //func fetchCourses(for course: String ,completion: @escaping ([Course]) -> Void) {
     func fetchCourses(completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
-        coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe
+        coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe, что дает нам обновление в реальном времени
             var courses = [Course]()
             for child in snapshot.children {
                 guard let snap = child as? DataSnapshot,

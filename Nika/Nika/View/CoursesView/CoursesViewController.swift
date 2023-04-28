@@ -12,6 +12,7 @@ final class CoursesViewController: UIViewController {
     private let lecture = LectureViewController()
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     private var courses: [Course] = []
+    private var users: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ final class CoursesViewController: UIViewController {
     }
     
     private func fetchData() {
+        NetworkManager.shared.fetchUsers { [weak self] users in
+            self?.users = users
+        }
+        // NetworkManager.shared.fetchCourses(for: "101") { [weak self] courses in
         NetworkManager.shared.fetchCourses { [weak self] courses in
             self?.courses = courses
             self?.collectionView.reloadData()

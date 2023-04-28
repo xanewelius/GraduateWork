@@ -16,7 +16,7 @@ final class ProfileDetailViewController: UIViewController {
     
     private let imageProfile: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "bmo")
+        imageView.image = UIImage(named: "bmo_black")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -38,7 +38,7 @@ final class ProfileDetailViewController: UIViewController {
     
     private let specialityTitle: UILabel = {
         let label = UILabel()
-        label.text = "Номер"
+        label.text = "Доступные курсы"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -53,7 +53,6 @@ final class ProfileDetailViewController: UIViewController {
 }
 
 extension ProfileDetailViewController {
-    
     private func configureView() {
         view.backgroundColor = .systemBackground
         view.addSubview(imageProfile)

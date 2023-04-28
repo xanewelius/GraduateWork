@@ -22,7 +22,7 @@ final class AuthorizationViewController: UIViewController {
     
     private let logo: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-        image.image = UIImage(named: "logo")
+        image.image = UIImage(named: "logo_black")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         return image
@@ -202,9 +202,9 @@ private extension AuthorizationViewController {
         guard let email = loginField.text else { return }
         guard let password = passwordField.text else { return }
         print(email, password)
-        let tab = TabBarController()
-        tab.modalPresentationStyle = .fullScreen
-        self.present(tab, animated: true)
+//        let tab = TabBarController()
+//        tab.modalPresentationStyle = .fullScreen
+//        self.present(tab, animated: true)
         
         Auth.auth().signIn(withEmail: email, password: password) { [self] result, error in
             if error == nil {
