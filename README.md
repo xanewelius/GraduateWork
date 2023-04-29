@@ -1,8 +1,25 @@
-# Refresher courses 78%
+# Refresher courses 80%
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
-*Refresher courses* program that works with [Firebase](https://firebase.google.com/) and Firebase real-time database (JSON model). Each new user registers on the site (maybe later I will add registration (*≧▽≦) ) in Firebase Authentication and, accordingly, in the Firebase Real-time database. Using a database, the user can be provided with a course containing lectures that he can watch without downloading to his phone.
+*Refresher courses* program that works with [Firebase](https://firebase.google.com/) and Firebase real-time database (JSON model). Each new user registers on the site (maybe later I will add registration ﾍ(=￣∇￣)ﾉ ) in Firebase Authentication and, accordingly, in the Firebase Real-time database. Using a database, the user can be provided with a course containing lectures that he can watch without downloading to his phone. Video lectures are stored on Google Drive and stored in the model as links to them, and in the program they are already processed into the necessary link for working with AVPlayer.
+
+Handling lecture link:
+```Swift
+let lectureURL = lecture.link
+//lectureURL: https://drive.google.com/file/d/1tUk6dSavwL4-emKRVBFEsznTO916W1hU/view?usp=share_link
+let pattern = "/d/([a-zA-Z0-9-_]+)"
+guard let regex = try? NSRegularExpression(pattern: pattern),
+    let match = regex.firstMatch(in: lectureURL, range: NSRange(location: 0, length: lectureURL.utf16.count)),
+    let range = Range(match.range(at: 1), in: lectureURL) else {
+    // failed to extract id from url
+    return
+}
+//fileID: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
+let fileID = String(lectureURL[range])
+
+let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fileID)")
+```
 
 ### Preview
 <p>
