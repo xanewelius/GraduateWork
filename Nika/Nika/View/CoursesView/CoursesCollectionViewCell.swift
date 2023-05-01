@@ -19,7 +19,7 @@ class CoursesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .light)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     func configure(with course: Course) {
         titleLabel.text = course.name
-        descriptionLabel.text = course.id
+        dateLabel.text = course.id
         //imageView.image = UIImage(named: "3")
         let url = course.img
         async {
@@ -83,7 +83,7 @@ private extension CoursesCollectionViewCell {
         contentView.layer.masksToBounds = true
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(dateLabel)
         layout()
     }
     
@@ -98,9 +98,9 @@ private extension CoursesCollectionViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
-            descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            dateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }

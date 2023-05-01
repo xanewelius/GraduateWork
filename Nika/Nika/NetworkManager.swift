@@ -16,31 +16,35 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private let database = Database.database().reference()
+    private var course: [String] = []
     
     func fetchUsers(completion: @escaping ([User]) -> Void) {
         let userUID = Auth.auth().currentUser!.uid
-        print(userUID)
-        
         let usersRef = database.child("Users")
         usersRef.observe(.value) { snapshot in
             var users = [User]()
-            for child in snapshot.children {
-                guard let snap = child as? DataSnapshot,
-                      let userDict = snap.value as? [String: Any],
-                      let name = userDict["name"] as? String,
-                      let courses = userDict["courses"] as? String else {
-                    continue
+            if snapshot.hasChild(userUID) {
+                if let userDict = snapshot.childSnapshot(forPath: userUID).value as? [String: Any],
+                   let name = userDict["name"] as? String,
+                   let coursesDict = userDict["courses"] as? [String: Any] {
+                    var courses = [Courses]()
+                    for (courseID, courseData) in coursesDict {
+                        if let courseDict = courseData as? [String: Any],
+                           let dateOfEnd = courseDict["date"] as? String {
+                            let course = Courses(id: courseID, dateOfEnd: dateOfEnd)
+                            courses.append(course)
+                        }
+                    }
+                    let user = User(id: userUID, name: name, courses: courses)
+                    users.append(user)
                 }
-                let user = User(id: snap.key, name: name, courses: courses)
-                users.append(user)
-                print(user)
             }
             completion(users)
         }
     }
     
     //func fetchCourses(for course: String ,completion: @escaping ([Course]) -> Void) {
-    func fetchCourses(completion: @escaping ([Course]) -> Void) {
+    func fetchCourses(for userCoursesIds: [String], completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
         coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe, что дает нам обновление в реальном времени
             var courses = [Course]()
@@ -51,8 +55,10 @@ class NetworkManager {
                       let img = courseDict["img"] as? String else {
                     continue
                 }
-                let course = Course(id: snap.key, name: name, img: img)
-                courses.append(course)
+                if userCoursesIds.contains(snap.key) {
+                    let course = Course(id: snap.key, name: name, img: img)
+                    courses.append(course)
+                }
             }
             completion(courses)
         }

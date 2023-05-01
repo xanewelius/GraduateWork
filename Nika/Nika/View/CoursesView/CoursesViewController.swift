@@ -21,13 +21,14 @@ final class CoursesViewController: UIViewController {
     }
     
     private func fetchData() {
-        NetworkManager.shared.fetchUsers { [weak self] users in
-            self?.users = users
-        }
-        // NetworkManager.shared.fetchCourses(for: "101") { [weak self] courses in
-        NetworkManager.shared.fetchCourses { [weak self] courses in
-            self?.courses = courses
-            self?.collectionView.reloadData()
+        NetworkManager.shared.fetchUsers { users in
+            self.users = users
+            if let currentUser = users.first {
+                NetworkManager.shared.fetchCourses(for: currentUser.courses.map { $0.id }) { courses in
+                    self.courses = courses
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
     

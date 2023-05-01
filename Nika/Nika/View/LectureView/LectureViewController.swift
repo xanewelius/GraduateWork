@@ -89,8 +89,9 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
             // failed to extract id from url
             return
         }
-        //fileID: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
+
         let fileID = String(lectureURL[range])
+        //fileID: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
         
         let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fileID)")
 

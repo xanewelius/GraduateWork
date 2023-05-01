@@ -202,9 +202,9 @@ private extension AuthorizationViewController {
         guard let email = loginField.text else { return }
         guard let password = passwordField.text else { return }
         print(email, password)
-//        let tab = TabBarController()
-//        tab.modalPresentationStyle = .fullScreen
-//        self.present(tab, animated: true)
+        let tab = TabBarController()
+        tab.modalPresentationStyle = .fullScreen
+        self.present(tab, animated: true)
         
         Auth.auth().signIn(withEmail: email, password: password) { [self] result, error in
             if error == nil {

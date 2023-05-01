@@ -11,8 +11,15 @@ import Foundation
 struct User: Codable {
     let id: String // user UID
     let name: String // Kuzmin Maxim Alexandrovich
-    let courses: String // 101, 102, 103
+    let courses: [Courses] // 101, 102, 103
 }
+
+struct Courses: Codable {
+    let id: String
+    let dateOfEnd: String
+}
+
+//Cделать проверку на дату!!!!!
 
 struct Course: Codable {
     let id: String // 101
