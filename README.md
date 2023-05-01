@@ -1,4 +1,4 @@
-# Refresher courses 80%
+# Refresher courses 85%
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Alata&pause=1000&color=F7F7F7&background=80FFC400&width=435&lines=Insanity+is+doing+the+same+thing;over+and+over+again;expecting+different+results.;Albert+Einstein)](https://git.io/typing-svg)
 
@@ -35,6 +35,7 @@ let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fil
 + adding new courses and lectures to course occurs through site
 + update courses in real time (when course is added to user)
 + Dark/Light theme
++ sorting courses by their end date (переписать)
 
 ### Stack
 
