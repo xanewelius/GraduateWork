@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SwitchTableViewCell: UITableViewCell {    
+class SwitchTableViewCell: UITableViewCell {
     static let identifier = "SwitchTableViewCell"
     private let defaults = UserDefaults.standard
     private let settingsView = SettingsViewController()
@@ -28,6 +28,7 @@ class SwitchTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
+        checkForSwitchPreference()
     }
     
     required init?(coder: NSCoder) {

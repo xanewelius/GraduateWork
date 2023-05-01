@@ -19,12 +19,11 @@ struct Courses: Codable {
     let dateOfEnd: String
 }
 
-//Cделать проверку на дату!!!!!
-
 struct Course: Codable {
     let id: String // 101
     let name: String // Шахтер
     let img: String // link on img
+    let dateOfEnd: String
 }
 
 struct Lecture: Codable {

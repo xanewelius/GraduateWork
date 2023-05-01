@@ -9,9 +9,24 @@ import UIKit
 
 final class ProfileDetailViewController: UIViewController {
     
+    var courses: Course?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        fetchUser()
+    }
+    
+    func fetchUser() {
+        NetworkManager.shared.fetchUsers { users in
+            if let currentUser = users.first {
+                NetworkManager.shared.fetchCourses(for: currentUser.courses.flatMap { [(id: $0.id, dateOfEnd: $0.dateOfEnd)] }) { courses in
+                    self.nameLabel.text = currentUser.name
+                    self.courses = courses.first
+                    self.specialityLabel.text = courses.map { $0.name }.joined(separator: ", ")
+                }
+            }
+        }
     }
     
     private let imageProfile: UIImageView = {
@@ -43,7 +58,7 @@ final class ProfileDetailViewController: UIViewController {
         return label
     }()
     
-    private let specialityLabel: UILabel = {
+    private var specialityLabel: UILabel = {
         let label = UILabel()
         label.text = "-"
         label.textColor = .systemGray

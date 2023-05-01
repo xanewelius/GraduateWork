@@ -10,6 +10,7 @@ import UIKit
 final class CoursesViewController: UIViewController {
     
     private let lecture = LectureViewController()
+    
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     private var courses: [Course] = []
     private var users: [User] = []
@@ -24,7 +25,7 @@ final class CoursesViewController: UIViewController {
         NetworkManager.shared.fetchUsers { users in
             self.users = users
             if let currentUser = users.first {
-                NetworkManager.shared.fetchCourses(for: currentUser.courses.map { $0.id }) { courses in
+                NetworkManager.shared.fetchCourses(for: currentUser.courses.flatMap { [(id: $0.id, dateOfEnd: $0.dateOfEnd)] }) { courses in
                     self.courses = courses
                     self.collectionView.reloadData()
                 }
@@ -85,17 +86,14 @@ private extension CoursesViewController {
 extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(courses.count)
-        if courses.count == 0 {
-            coursesAvailable.isHidden = false
-        } else {
-            coursesAvailable.isHidden = true
-        }
+        coursesAvailable.isHidden = !courses.isEmpty // isEmpty - проверка на пустой массив а ! - инверсия
         return courses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CoursesCollectionViewCell else { return UICollectionViewCell() }
         
+        courses = courses.sorted(by: { $0.dateOfEnd < $1.dateOfEnd })
         let course = courses[indexPath.item]
         cell.configure(with: course)
         

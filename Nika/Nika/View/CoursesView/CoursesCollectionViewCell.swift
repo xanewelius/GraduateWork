@@ -49,8 +49,7 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     func configure(with course: Course) {
         titleLabel.text = course.name
-        dateLabel.text = course.id
-        //imageView.image = UIImage(named: "3")
+        dateLabel.text = course.dateOfEnd
         let url = course.img
         async {
             do {

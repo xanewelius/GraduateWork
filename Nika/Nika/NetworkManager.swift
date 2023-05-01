@@ -16,7 +16,6 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private let database = Database.database().reference()
-    private var course: [String] = []
     
     func fetchUsers(completion: @escaping ([User]) -> Void) {
         let userUID = Auth.auth().currentUser!.uid
@@ -43,8 +42,13 @@ class NetworkManager {
         }
     }
     
-    //func fetchCourses(for course: String ,completion: @escaping ([Course]) -> Void) {
-    func fetchCourses(for userCoursesIds: [String], completion: @escaping ([Course]) -> Void) {
+    //Переделать описание используя слово cloud
+    //Переделать [course] - добавить дату окончания и сделать так, чтобы эта дата переписывалась если есть дата окончания курса в user +++
+    //Cделать проверку на дату!!!!!
+    //Сделать сортировку на дате курсов +++
+    //Сдедать пользователя в настройках
+    
+    func fetchCourses(for idsWithDate: [(id: String, dateOfEnd: String)], completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
         coursesRef.observe(.value) { snapshot in // заменяем observeSingleEvent на observe, что дает нам обновление в реальном времени
             var courses = [Course]()
@@ -55,8 +59,9 @@ class NetworkManager {
                       let img = courseDict["img"] as? String else {
                     continue
                 }
-                if userCoursesIds.contains(snap.key) {
-                    let course = Course(id: snap.key, name: name, img: img)
+                //Мб сделать дату начала курса???
+                for (id, dateOfEnd) in idsWithDate where id == snap.key {
+                    let course = Course(id: snap.key, name: name, img: img, dateOfEnd: dateOfEnd)
                     courses.append(course)
                 }
             }
