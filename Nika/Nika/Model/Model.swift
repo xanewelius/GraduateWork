@@ -16,6 +16,7 @@ struct User: Codable {
 
 struct Courses: Codable {
     let id: String
+    let dateOfStart: String
     let dateOfEnd: String
 }
 

@@ -29,8 +29,9 @@ class NetworkManager {
                     var courses = [Courses]()
                     for (courseID, courseData) in coursesDict {
                         if let courseDict = courseData as? [String: Any],
-                           let dateOfEnd = courseDict["date"] as? String {
-                            let course = Courses(id: courseID, dateOfEnd: dateOfEnd)
+                           let dateOfStart = courseDict["dateOfStart"] as? String,
+                           let dateOfEnd = courseDict["dateOfEnd"] as? String {
+                            let course = Courses(id: courseID, dateOfStart: dateOfStart, dateOfEnd: dateOfEnd)
                             courses.append(course)
                         }
                     }
@@ -42,11 +43,11 @@ class NetworkManager {
         }
     }
     
-    //Переделать описание используя слово cloud
+    //Переделать описание используя слово cloud +++
     //Переделать [course] - добавить дату окончания и сделать так, чтобы эта дата переписывалась если есть дата окончания курса в user +++
     //Cделать проверку на дату!!!!!
     //Сделать сортировку на дате курсов +++
-    //Сдедать пользователя в настройках
+    //Сдедать пользователя в настройках +++
     
     func fetchCourses(for idsWithDate: [(id: String, dateOfEnd: String)], completion: @escaping ([Course]) -> Void) {
         let coursesRef = database.child("Courses")
