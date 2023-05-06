@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SwitchTableViewCell: UITableViewCell {    
+class SwitchTableViewCell: UITableViewCell {
     static let identifier = "SwitchTableViewCell"
     private let defaults = UserDefaults.standard
     private let settingsView = SettingsViewController()
@@ -67,10 +67,17 @@ class SwitchTableViewCell: UITableViewCell {
     func switchDidTap() {
         if mySwitch.isOn {
             print("IS ON")
-            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            for window in windowScene.windows {
+                window.overrideUserInterfaceStyle = .dark
+            }
             //settingsView.myTitle.text = "anf435s"
         } else {
             print("IS OFF")
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            for window in windowScene.windows {
+                window.overrideUserInterfaceStyle = .light
+            }
             //settingsView.myTitle.text = "anf124s"
         }
         userDefaultsConfig()
@@ -86,7 +93,7 @@ private extension SwitchTableViewCell {
     }
 }
 
-private extension SwitchTableViewCell {
+extension SwitchTableViewCell {
     func userDefaultsConfig() {
         if mySwitch.isOn {
             defaults.set(mySwitch.isOn, forKey: "setSwitch")
@@ -98,8 +105,10 @@ private extension SwitchTableViewCell {
     func checkForSwitchPreference() {
         if defaults.object(forKey: "setSwitch") != nil {
             mySwitch.isOn = defaults.bool(forKey: "setSwitch")
+            switchDidTap()
         } else {
             mySwitch.isOn = defaults.bool(forKey: "setSwitch")
+            switchDidTap()
         }
     }
 }

@@ -9,43 +9,72 @@ import UIKit
 
 final class CoursesViewController: UIViewController {
     
-    private let images = Courses.getImageList()
     private let lecture = LectureViewController()
+    
     private let collectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    private var courses: [Course] = []
+    private var users: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         configureView()
+    }
+    
+    private func fetchData() {
+        NetworkManager.shared.fetchUsers { users in
+            self.users = users
+            if let currentUser = users.first {
+                NetworkManager.shared.fetchCourses(for: currentUser.courses.flatMap { [(id: $0.id, dateOfEnd: $0.dateOfEnd)] }) { courses in
+                    self.courses = courses
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 350, height: 80)
+        layout.itemSize = CGSize(width: 350, height: 175)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
         collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .automatic
         return collectionView
+    }()
+    
+    private let coursesAvailable: UILabel = {
+        let label = UILabel()
+        label.text = "Нет доступных курсов"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
+        return label
     }()
 }
 
 private extension CoursesViewController {
     func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        navigationItem.titleView = nil
+        //navigationController?.navigationBar.prefersLargeTitles = true
         title = "Курсы"
-        navigationController?.navigationBar.prefersLargeTitles = true
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
+        view.addSubview(coursesAvailable)
         layout()
     }
     
     func layout() {
         NSLayoutConstraint.activate([
+            coursesAvailable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            coursesAvailable.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -56,20 +85,24 @@ private extension CoursesViewController {
 
 extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        images.count
+        print(courses.count)
+        coursesAvailable.isHidden = !courses.isEmpty // isEmpty - проверка на пустой массив а ! - инверсия
+        return courses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CoursesCollectionViewCell else { return UICollectionViewCell() }
-        let image = images[indexPath.row]
-        //print(images)
-        cell.configure(with: image)
+        
+        courses = courses.sorted(by: { $0.dateOfEnd < $1.dateOfEnd })
+        let course = courses[indexPath.item]
+        cell.configure(with: course)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let image = images[indexPath.row]
-        lecture.setCourses(course: image)
+        let course = courses[indexPath.item]
+        lecture.fetchData(course: course)
         collectionView.deselectItem(at: indexPath, animated: true)
         self.navigationController?.pushViewController(self.lecture, animated: true)
     }

@@ -6,14 +6,11 @@
 //
 
 import UIKit
+import Nuke
 
 class LectureCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let reuseIdentifier = "MyCollectionViewCell"
-    private let images = Courses.getImageList()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -25,8 +22,9 @@ class LectureCollectionViewCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .light)
+        label.contentMode = .top
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
+        label.numberOfLines = 5
         return label
     }()
     
@@ -40,7 +38,6 @@ class LectureCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Initialization
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -51,17 +48,35 @@ class LectureCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configuration
-    
-    func configure(with image: Image) {
-        //print(image)
-        titleLabel.text = image.lecture
-        descriptionLabel.text = image.description
-        imageView.image = UIImage(named: "2")
+    func configure(with lecture: Lecture) {
+        titleLabel.text = lecture.name
+        descriptionLabel.text = lecture.description
+        self.imageView.image = UIImage(named: "2")
+        let url = lecture.img
+        async {
+            do {
+                let image = try await loadImage(url: url)
+                self.imageView.image = image
+            } catch {
+                print(error)
+                self.imageView.image = UIImage(named: "2")
+            }
+        }
+    }
+
+    func loadImage(url: String) async throws -> UIImage {
+        let task = Task.init(priority: .high) {
+            let task = ImagePipeline.shared.imageTask(with: URL(string: url)!)
+            for await progress in task.progress {
+                print("Updated progress: ", progress)
+            }
+            return try await task.image
+        }
+        return try await task.value
     }
 }
 
 // MARK: - Layout
-
 private extension LectureCollectionViewCell {
     func configureView() {
         contentView.backgroundColor = .systemGray6
@@ -74,21 +89,21 @@ private extension LectureCollectionViewCell {
     }
     
     func layout() {
-            NSLayoutConstraint.activate([
-                imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-                imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 100),
-                imageView.widthAnchor.constraint(equalToConstant: 100),
-                
-                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                
-                descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-                descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 120),
+            imageView.widthAnchor.constraint(equalToConstant: 150),
+        ])
+    }
 }
 

@@ -8,12 +8,29 @@
 import Foundation
 
 // MARK: - Config
-struct Config: Codable {
-    let user: [User]
+struct User: Codable {
+    let id: String // user UID
+    let name: String // Kuzmin Maxim Alexandrovich
+    let courses: [Courses] // 101, 102, 103
 }
 
-// MARK: - User
-struct User: Codable {
-    let name, login, password: String
-    let spec: Int
+struct Courses: Codable {
+    let id: String
+    let dateOfStart: String
+    let dateOfEnd: String
+}
+
+struct Course: Codable {
+    let id: String // 101
+    let name: String // Шахтер
+    let img: String // link on img
+    let dateOfEnd: String
+}
+
+struct Lecture: Codable {
+    let id: String // 101
+    let name: String // Лекция номер 1
+    let description: String // Описание лекции 1
+    let link: String // link on google disk
+    let img: String // ling on img
 }
