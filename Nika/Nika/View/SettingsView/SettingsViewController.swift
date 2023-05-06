@@ -76,11 +76,11 @@ private extension SettingsViewController {
         models.append(.staticCell(model: SettingsOption(title: "Пользователь") {
             self.navigationController?.pushViewController(self.profileDetailViewController, animated: true)
         }))
-        models.append(.staticCell(model: SettingsOption(title: "Информация") {
+        models.append(.staticCell(model: SettingsOption(title: "О приложении") {
             self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
         }))
         //table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
-        models.append(.switchCell(model: SettingsSwitchOption(title: "Dark mode", handler: {
+        models.append(.switchCell(model: SettingsSwitchOption(title: "Темная тема", handler: {
             
         })))
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -130,4 +130,3 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
