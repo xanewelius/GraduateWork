@@ -66,19 +66,17 @@ class SwitchTableViewCell: UITableViewCell {
     @objc
     func switchDidTap() {
         if mySwitch.isOn {
-            print("IS ON")
+            print("dark")
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             for window in windowScene.windows {
                 window.overrideUserInterfaceStyle = .dark
             }
-            //settingsView.myTitle.text = "anf435s"
         } else {
-            print("IS OFF")
+            print("white")
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             for window in windowScene.windows {
                 window.overrideUserInterfaceStyle = .light
             }
-            //settingsView.myTitle.text = "anf124s"
         }
         userDefaultsConfig()
     }

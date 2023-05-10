@@ -70,6 +70,7 @@ final class ProfileDetailViewController: UIViewController {
 extension ProfileDetailViewController {
     private func configureView() {
         view.backgroundColor = .systemBackground
+        title = "Пользователь"
         view.addSubview(imageProfile)
         view.addSubview(nameTitle)
         view.addSubview(nameLabel)

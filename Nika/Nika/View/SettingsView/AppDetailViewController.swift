@@ -33,7 +33,7 @@ final class AppDetailViewController: UIViewController {
 private extension AppDetailViewController {
     func configureView() {
         view.backgroundColor = .systemBackground
-        title = "Информация"
+        title = "О приложении"
         view.addSubview(appTitle)
         view.addSubview(appVersion)
         layout()

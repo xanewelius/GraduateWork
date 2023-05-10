@@ -14,6 +14,10 @@
 		40066F4E29E46E4B00B5F09E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 40066F4D29E46E4B00B5F09E /* FirebaseStorage */; };
 		40066F5229F2AF2F00B5F09E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */; };
 		40066F5F29F3166A00B5F09E /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 40066F5E29F3166A00B5F09E /* Nuke */; };
+		4049D6B22A0C33FA0079F0A3 /* Alexana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4049D6B12A0C33FA0079F0A3 /* Alexana.ttf */; };
+		4049D6B62A0C34150079F0A3 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4049D6B32A0C34150079F0A3 /* Montserrat-Light.ttf */; };
+		4049D6B72A0C34150079F0A3 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4049D6B42A0C34150079F0A3 /* Montserrat-Bold.ttf */; };
+		4049D6B82A0C34150079F0A3 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4049D6B52A0C34150079F0A3 /* Montserrat-Medium.ttf */; };
 		4069DAB629BDEA7E0051B731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB529BDEA7E0051B731 /* AppDelegate.swift */; };
 		4069DAB829BDEA7E0051B731 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */; };
 		4069DABF29BDEA800051B731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4069DABE29BDEA800051B731 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4049D6B12A0C33FA0079F0A3 /* Alexana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alexana.ttf; sourceTree = "<group>"; };
+		4049D6B32A0C34150079F0A3 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		4049D6B42A0C34150079F0A3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		4049D6B52A0C34150079F0A3 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		4069DAB229BDEA7E0051B731 /* Nika.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nika.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4069DAB529BDEA7E0051B731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +88,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4049D6AA2A0C301C0079F0A3 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4049D6B42A0C34150079F0A3 /* Montserrat-Bold.ttf */,
+				4049D6B32A0C34150079F0A3 /* Montserrat-Light.ttf */,
+				4049D6B52A0C34150079F0A3 /* Montserrat-Medium.ttf */,
+				4049D6B12A0C33FA0079F0A3 /* Alexana.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		4069DAA929BDEA7E0051B731 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +139,7 @@
 				406AE98629DA219800E44503 /* LectureView */,
 				406AE98729DA21B900E44503 /* SettingsView */,
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
+				4049D6AA2A0C301C0079F0A3 /* fonts */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,7 +261,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4049D6B72A0C34150079F0A3 /* Montserrat-Bold.ttf in Resources */,
+				4049D6B62A0C34150079F0A3 /* Montserrat-Light.ttf in Resources */,
 				4069DABF29BDEA800051B731 /* Assets.xcassets in Resources */,
+				4049D6B22A0C33FA0079F0A3 /* Alexana.ttf in Resources */,
+				4049D6B82A0C34150079F0A3 /* Montserrat-Medium.ttf in Resources */,
 				40066F5229F2AF2F00B5F09E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -61,39 +61,62 @@ final class SettingsViewController: UIViewController {
         label.text = "Настройки"
         return label
     }()
+    
+    let exitButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.title = "Выйти"
+        configuration.baseForegroundColor = .systemRed
+        configuration.buttonSize = .medium
+        configuration.attributedTitle?.font = .systemFont(ofSize: 15, weight: .semibold)
+        
+        //configuration.image = UIImage(systemName: "arrow.right")
+        //configuration.imagePlacement = .trailing
+        //configuration.imagePadding = 50
+        
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return button
+    }()
 }
 
 private extension SettingsViewController {
+    @objc func buttonTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func configureView() {
         title = "Настройки"
         view.backgroundColor = .systemBackground
-        //navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: myTitle)
         tableView.frame = view.bounds
         view.addSubview(tableView)
-        //models.append(.switchCell(model: SettingsSwitchOption(title: "Dark", handler: {
-            
-        //})))
+        view.addSubview(exitButton)
+        
+        // Конфигурирование tableView и добавление моделей
         models.append(.staticCell(model: SettingsOption(title: "Пользователь") {
             self.navigationController?.pushViewController(self.profileDetailViewController, animated: true)
         }))
         models.append(.staticCell(model: SettingsOption(title: "О приложении") {
             self.navigationController?.pushViewController(self.appDetailViewController, animated: true)
         }))
-        //table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         models.append(.switchCell(model: SettingsSwitchOption(title: "Темная тема", handler: {
             
         })))
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        //navigationController?.navigationBar.prefersLargeTitles = true
+        
         layout()
     }
     
     func layout() {
         NSLayoutConstraint.activate([
-            
+            exitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            exitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
 }
+
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -11,18 +11,22 @@ import FirebaseDatabase
 
 final class AuthorizationViewController: UIViewController {
     
+    private let defaults = UserDefaults.standard
     private let settings = SwitchTableViewCell()
+    private var email = ""
+    private var password = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         settings.checkForSwitchPreference()
         configureView()
+        checkForSwitchPreference()
         self.termsTextView.delegate = self
     }
     
     private let logo: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-        image.image = UIImage(named: "logo_black")
+        image.image = UIImage(named: "logo_nika")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         return image
@@ -31,7 +35,7 @@ final class AuthorizationViewController: UIViewController {
     private var labelLogin: UILabel = {
         let label = UILabel()
         label.text = "Вход"
-        label.font = UIFont.boldSystemFont(ofSize: 25.0)
+        label.font = UIFont(name: "Montserrat-Bold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -39,7 +43,7 @@ final class AuthorizationViewController: UIViewController {
     private var labelLoginDescription: UILabel = {
         let label = UILabel()
         label.text = "Войдите в свой аккаунт"
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = UIFont(name: "Montserrat-Light", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
         return label
@@ -49,7 +53,7 @@ final class AuthorizationViewController: UIViewController {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Войти"
         configuration.buttonSize = .medium
-        configuration.attributedTitle?.font = .systemFont(ofSize: 15, weight: .semibold)
+        configuration.attributedTitle?.font = UIFont(name: "Montserrat-Medium", size: 15)
         
         //configuration.image = UIImage(systemName: "arrow.right")
         //configuration.imagePlacement = .trailing
@@ -66,7 +70,7 @@ final class AuthorizationViewController: UIViewController {
     private let loginField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Логин"
-        
+        textField.font = UIFont(name: "Montserrat-Light", size: 17)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.layer.cornerRadius = 10
@@ -91,7 +95,7 @@ final class AuthorizationViewController: UIViewController {
     private let passwordField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Пароль"
-        
+        textField.font = UIFont(name: "Montserrat-Light", size: 17)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.layer.cornerRadius = 10
@@ -125,6 +129,32 @@ final class AuthorizationViewController: UIViewController {
         return button
     }()
     
+    private let checkBoxButton: UIButton = {
+        let checkboxButton = UIButton(type: .custom)
+        checkboxButton.translatesAutoresizingMaskIntoConstraints = false
+        checkboxButton.setImage(UIImage(systemName: "square"), for: .normal)
+        checkboxButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        checkboxButton.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
+        return checkboxButton
+    }()
+    
+    private let checkboxLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Montserrat-Light", size: 12)
+        label.text = "Запомнить пользователя"
+        return label
+    }()
+    
+    private let checkboxStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     private let termsTextView: UITextView = {
         let policyText = "политикой конфиденциальности"
         let signatureText = "соглашением об электронной подписи"
@@ -134,7 +164,7 @@ final class AuthorizationViewController: UIViewController {
         let text = UITextView()
         text.attributedText = attributedString
         text.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
-        text.font = .systemFont(ofSize: 10)
+        text.font = UIFont(name: "Montserrat-Light", size: 10)
         text.textColor = .label
         text.isSelectable = true
         text.isEditable = false
@@ -156,6 +186,9 @@ private extension AuthorizationViewController {
         passwordField.rightView = toggleButton
         passwordField.rightViewMode = .always
         view.addSubview(toggleButton)
+        view.addSubview(checkboxStackView)
+        checkboxStackView.addArrangedSubview(checkBoxButton)
+        checkboxStackView.addArrangedSubview(checkboxLabel)
         view.addSubview(button)
         view.addSubview(termsTextView)
         layout()
@@ -178,7 +211,9 @@ private extension AuthorizationViewController {
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordField.widthAnchor.constraint(equalToConstant: 340.0),
             passwordField.heightAnchor.constraint(equalToConstant: 50.0),
-            button.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20),
+            checkboxStackView.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 10),
+            checkboxStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.topAnchor.constraint(equalTo: checkboxStackView.bottomAnchor, constant: 10),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: 340.0),
             button.heightAnchor.constraint(equalToConstant: 50.0),
@@ -197,24 +232,39 @@ private extension AuthorizationViewController {
         toggleButton.configuration?.image = UIImage(systemName: imageName, withConfiguration: UIImage.SymbolConfiguration(pointSize: 12))
     }
     
+    @objc func checkBoxTapped() {
+        checkBoxButton.isSelected = !checkBoxButton.isSelected
+        if checkBoxButton.isSelected {
+            print("isOn")
+        } else {
+            print("isOff")
+            //userDefaultsConfig()
+        }
+        userDefaultsConfig()
+    }
+    
     @objc func buttonTapped() {
         print("tap")
-        guard let email = loginField.text else { return }
-        guard let password = passwordField.text else { return }
-        print(email, password)
-        let tab = TabBarController()
-        tab.modalPresentationStyle = .fullScreen
-        self.present(tab, animated: true)
+        email = loginField.text ?? ""
+        password = passwordField.text ?? ""
+        let tabBarController = TabBarController()
+        if checkBoxButton.isSelected {
+            userDefaultsConfig()
+        }
+        tabBarController.modalPresentationStyle = .fullScreen
+        self.present(tabBarController, animated: true)
         
         Auth.auth().signIn(withEmail: email, password: password) { [self] result, error in
             if error == nil {
-                let tab = TabBarController()
-                tab.modalPresentationStyle = .fullScreen
-                self.present(tab, animated: true)
+                let tabBarController = TabBarController()
+                tabBarController.modalPresentationStyle = .fullScreen
+                self.present(tabBarController, animated: true)
             } else {
                 print(error!.localizedDescription)
-                if email == "" || password == "" {
-                    self.showAlert(title: "Введите логин и пароль", message: "Хотите повторить еще раз?")
+                guard let email = loginField.text, !email.isEmpty,
+                      let password = passwordField.text, !password.isEmpty else {
+                    showAlert(title: "Введите логин и пароль", message: "Хотите повторить еще раз?")
+                    return
                 }
                 switch error!.localizedDescription {
                 case "The password is invalid or the user does not have a password.":
@@ -265,5 +315,23 @@ extension AuthorizationViewController: UITextViewDelegate {
             let nav = UINavigationController(rootViewController: vc)
             self.present(nav, animated: true, completion: nil)
         }
+    }
+}
+
+extension AuthorizationViewController {
+    func userDefaultsConfig() {
+        defaults.set(checkBoxButton.isSelected, forKey: "setCheck")
+        defaults.set(email, forKey: "setEmail")
+        defaults.set(password, forKey: "setPassword")
+    }
+    
+    func checkForSwitchPreference() {
+        checkBoxButton.isSelected = defaults.bool(forKey: "setCheck")
+        guard let savedEmail = defaults.string(forKey: "setEmail"),
+              let savedPassword = defaults.string(forKey: "setPassword") else {
+            return
+        }
+        loginField.text = savedEmail
+        passwordField.text = savedPassword
     }
 }
