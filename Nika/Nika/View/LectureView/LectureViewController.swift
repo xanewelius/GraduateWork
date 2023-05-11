@@ -19,12 +19,13 @@ final class LectureViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 350, height: 120)
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
-        collectionView.register(LectureCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .automatic
+        collectionView.register(LectureCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -45,8 +46,8 @@ final class LectureViewController: UIViewController {
 
 private extension LectureViewController {
     func configureView() {
-        let font = UIFont(name: "Montserrat-Medium", size: 16)!
-        let attributes = [NSAttributedString.Key.font: font]
+        let font = UIFont(name: "Montserrat-Medium", size: 16)
+        let attributes = [NSAttributedString.Key.font: font!]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         view.backgroundColor = .systemBackground
         collectionView.delegate = self
@@ -95,7 +96,6 @@ extension LectureViewController: UICollectionViewDelegate, UICollectionViewDataS
 
         let fileID = String(lectureURL[range])
         //fileID: 1tUk6dSavwL4-emKRVBFEsznTO916W1hU
-        
         let videoURL = URL(string: "https://drive.google.com/uc?export=download&id=\(fileID)")
 
         // Create a player item

@@ -21,8 +21,8 @@ class LectureCollectionViewCell: UICollectionViewCell {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Montserrat-Light", size: 12)
         label.contentMode = .top
+        label.font = UIFont(name: "Montserrat-Light", size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 5
         return label
@@ -30,10 +30,10 @@ class LectureCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -79,9 +79,9 @@ class LectureCollectionViewCell: UICollectionViewCell {
 // MARK: - Layout
 private extension LectureCollectionViewCell {
     func configureView() {
-        contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
+        contentView.backgroundColor = .systemGray6
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(imageView)
@@ -91,7 +91,6 @@ private extension LectureCollectionViewCell {
     func layout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
 

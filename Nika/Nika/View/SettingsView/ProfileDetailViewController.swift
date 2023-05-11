@@ -73,8 +73,8 @@ final class ProfileDetailViewController: UIViewController {
 
 extension ProfileDetailViewController {
     private func configureView() {
-        view.backgroundColor = .systemBackground
         title = "Пользователь"
+        view.backgroundColor = .systemBackground
         view.addSubview(imageProfile)
         view.addSubview(nameTitle)
         view.addSubview(nameLabel)
@@ -87,13 +87,16 @@ extension ProfileDetailViewController {
         NSLayoutConstraint.activate([
             imageProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             imageProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            //imageProfile.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             nameTitle.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 20),
             nameTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             nameLabel.topAnchor.constraint(equalTo: nameTitle.bottomAnchor, constant: 5),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             specialityTitle.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             specialityTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             specialityLabel.topAnchor.constraint(equalTo: specialityTitle.bottomAnchor, constant: 5),
             specialityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])

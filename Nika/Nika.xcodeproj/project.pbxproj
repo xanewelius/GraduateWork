@@ -99,6 +99,14 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		4049D6B92A0D89260079F0A3 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				406AE96329BE647200E44503 /* NetworkManager.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		4069DAA929BDEA7E0051B731 = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +129,9 @@
 			children = (
 				4069DAB529BDEA7E0051B731 /* AppDelegate.swift */,
 				4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */,
-				406AE96329BE647200E44503 /* NetworkManager.swift */,
+				4049D6B92A0D89260079F0A3 /* NetworkService */,
 				4069DAD029BE0DEC0051B731 /* Model */,
+				4049D6AA2A0C301C0079F0A3 /* fonts */,
 				4069DACB29BDF8EE0051B731 /* View */,
 				4069DABE29BDEA800051B731 /* Assets.xcassets */,
 				4069DAC329BDEA800051B731 /* Info.plist */,
@@ -139,7 +148,6 @@
 				406AE98629DA219800E44503 /* LectureView */,
 				406AE98729DA21B900E44503 /* SettingsView */,
 				4069DACE29BE0AED0051B731 /* TabBarController.swift */,
-				4049D6AA2A0C301C0079F0A3 /* fonts */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,8 +181,8 @@
 		406AE98729DA21B900E44503 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
-				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
 				406AE97229C11ABF00E44503 /* SettingsViewController.swift */,
+				406AE97129C11ABF00E44503 /* SettingsTableViewCell.swift */,
 				406AE97429C11AC000E44503 /* SwitchTableViewCell.swift */,
 				406AE97329C11AC000E44503 /* AppDetailViewController.swift */,
 				406AE97929C3911C00E44503 /* ProfileDetailViewController.swift */,

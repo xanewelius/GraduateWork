@@ -54,7 +54,6 @@ final class AuthorizationViewController: UIViewController {
         configuration.title = "Войти"
         configuration.buttonSize = .medium
         configuration.attributedTitle?.font = UIFont(name: "Montserrat-Medium", size: 15)
-        
         //configuration.image = UIImage(systemName: "arrow.right")
         //configuration.imagePlacement = .trailing
         //configuration.imagePadding = 50
@@ -140,18 +139,18 @@ final class AuthorizationViewController: UIViewController {
     
     private let checkboxLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Montserrat-Light", size: 12)
         label.text = "Запомнить пользователя"
+        label.font = UIFont(name: "Montserrat-Light", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let checkboxStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 8
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -161,6 +160,7 @@ final class AuthorizationViewController: UIViewController {
         let attributedString = NSMutableAttributedString(string: "Нажимая кнопку \"Войти\", Вы соглашаетесь с \(policyText) и \(signatureText)")
         attributedString.addAttribute(.link, value: "policy://privacyPolicy", range: (attributedString.string as NSString).range(of: policyText))
         attributedString.addAttribute(.link, value: "agreement://termsAndConditions", range: (attributedString.string as NSString).range(of: signatureText))
+        
         let text = UITextView()
         text.attributedText = attributedString
         text.linkTextAttributes = [.foregroundColor: UIColor.systemBlue]
@@ -199,24 +199,31 @@ private extension AuthorizationViewController {
             logo.bottomAnchor.constraint(equalTo: labelLogin.topAnchor),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logo.heightAnchor.constraint(equalToConstant: 220),
+            
             labelLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             labelLoginDescription.topAnchor.constraint(equalTo: labelLogin.bottomAnchor, constant: 10),
             labelLoginDescription.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             labelLoginDescription.bottomAnchor.constraint(equalTo: loginField.topAnchor, constant: -20),
+            
             loginField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginField.widthAnchor.constraint(equalToConstant: 340.0),
             loginField.heightAnchor.constraint(equalToConstant: 50.0),
+            
             passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor, constant: 20),
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordField.widthAnchor.constraint(equalToConstant: 340.0),
             passwordField.heightAnchor.constraint(equalToConstant: 50.0),
+            
             checkboxStackView.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 10),
             checkboxStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             button.topAnchor.constraint(equalTo: checkboxStackView.bottomAnchor, constant: 10),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: 340.0),
             button.heightAnchor.constraint(equalToConstant: 50.0),
+            
             termsTextView.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 5),
             termsTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             termsTextView.widthAnchor.constraint(equalToConstant: 340)
@@ -233,13 +240,8 @@ private extension AuthorizationViewController {
     }
     
     @objc func checkBoxTapped() {
+        // меняет состояние
         checkBoxButton.isSelected = !checkBoxButton.isSelected
-        if checkBoxButton.isSelected {
-            print("isOn")
-        } else {
-            print("isOff")
-            //userDefaultsConfig()
-        }
         userDefaultsConfig()
     }
     
@@ -258,6 +260,9 @@ private extension AuthorizationViewController {
             if error == nil {
                 let tabBarController = TabBarController()
                 tabBarController.modalPresentationStyle = .fullScreen
+//                if checkBoxButton.isSelected {
+//                    userDefaultsConfig()
+//                }
                 self.present(tabBarController, animated: true)
             } else {
                 print(error!.localizedDescription)

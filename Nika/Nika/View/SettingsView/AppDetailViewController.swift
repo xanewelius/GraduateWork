@@ -15,25 +15,25 @@ final class AppDetailViewController: UIViewController {
     
     private let appTitle: UILabel = {
         let appTitle = UILabel()
-        appTitle.translatesAutoresizingMaskIntoConstraints = false
         appTitle.text = "Версия приложения"
         appTitle.textColor = .gray
+        appTitle.translatesAutoresizingMaskIntoConstraints = false
         return appTitle
     }()
     
     private let appVersion: UILabel = {
         let appVersion = UILabel()
-        appVersion.translatesAutoresizingMaskIntoConstraints = false
         appVersion.text = "0.1 build 1"
         appVersion.textColor = .gray
+        appVersion.translatesAutoresizingMaskIntoConstraints = false
         return appVersion
     }()
 }
 
 private extension AppDetailViewController {
     func configureView() {
-        view.backgroundColor = .systemBackground
         title = "О приложении"
+        view.backgroundColor = .systemBackground
         view.addSubview(appTitle)
         view.addSubview(appVersion)
         layout()

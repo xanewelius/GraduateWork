@@ -50,7 +50,6 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         tableView.delegate = self
         tableView.dataSource = self
         configureView()
@@ -59,18 +58,17 @@ final class SettingsViewController: UIViewController {
     let exitButton: UIButton = {
         var configuration = UIButton.Configuration.borderless()
         configuration.title = "Выйти"
-        configuration.baseForegroundColor = .systemRed
         configuration.buttonSize = .medium
+        configuration.baseForegroundColor = .systemRed
         configuration.attributedTitle?.font = UIFont(name: "Montserrat-Medium", size: 15)
-        
         //configuration.image = UIImage(systemName: "arrow.right")
         //configuration.imagePlacement = .trailing
         //configuration.imagePadding = 50
         
         let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 10
         button.clipsToBounds = true
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
@@ -82,11 +80,12 @@ private extension SettingsViewController {
     }
     
     func configureView() {
+        title = "Настройки"
+        view.backgroundColor = .systemBackground
         let font = UIFont(name: "Montserrat-Medium", size: 16)!
         let attributes = [NSAttributedString.Key.font: font]
-        title = "Настройки"
         self.navigationController?.navigationBar.titleTextAttributes = attributes
-        view.backgroundColor = .systemBackground
+        
         tableView.frame = view.bounds
         view.addSubview(tableView)
         view.addSubview(exitButton)

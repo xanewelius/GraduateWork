@@ -37,35 +37,32 @@ final class CoursesViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 350, height: 175)
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = true
-        collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .automatic
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         return collectionView
     }()
     
     private let coursesAvailable: UILabel = {
         let label = UILabel()
         label.text = "Нет доступных курсов"
+        label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .gray
         return label
     }()
 }
 
 private extension CoursesViewController {
     func configureView() {
-        view.backgroundColor = .systemBackground
-        //navigationItem.titleView = nil
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        //title = "Курсы"
-        let font = UIFont(name: "Montserrat-Medium", size: 16)!
-        let attributes = [NSAttributedString.Key.font: font]
         self.navigationItem.title = "Курcы"
+        view.backgroundColor = .systemBackground
+        let font = UIFont(name: "Montserrat-Medium", size: 16)
+        let attributes = [NSAttributedString.Key.font: font!]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         
         collectionView.delegate = self

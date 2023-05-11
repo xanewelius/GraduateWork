@@ -29,9 +29,9 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -77,9 +77,9 @@ class CoursesCollectionViewCell: UICollectionViewCell {
 // MARK: - Layout
 private extension CoursesCollectionViewCell {
     func configureView() {
-        contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
+        contentView.backgroundColor = .systemGray6
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
