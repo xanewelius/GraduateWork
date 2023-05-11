@@ -16,9 +16,10 @@
 
 ### Preview
 <p>
-  <img src="https://user-images.githubusercontent.com/91137341/233851587-45e4bbbd-cef1-4015-8723-8197b9d3c59d.jpg" width="200">
-  <img src="https://user-images.githubusercontent.com/91137341/233852059-297c25d4-a033-497d-81ef-d82f23200cfe.jpg" width="200">
-  <img src="https://user-images.githubusercontent.com/91137341/233852246-344714e9-aaff-4cce-9c5b-6b11207efb2e.jpg" width="200">
+  <img src="https://github.com/xanewelius/GraduateWork/assets/91137341/5b25a632-69aa-4826-b3d0-916c3b173ffd" width="200">
+  <img src="https://github.com/xanewelius/GraduateWork/assets/91137341/73228c5e-01f0-4b47-9711-1af76229c442" width="200">
+  <img src="https://github.com/xanewelius/GraduateWork/assets/91137341/7db571e0-8ccf-40e3-89e2-9f53d359b62e" width="200">
+  <img src="https://github.com/xanewelius/GraduateWork/assets/91137341/359b2a1e-c5c3-4b84-b23d-2627a646dd34" width="200">
 </p>
  
 Handling lecture link:
