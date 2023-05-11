@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        // Set global font
+//        let font = UIFont(name: "Montserrat-Medium", size: 17)
+//        UILabel.appearance().font = font
+//        UITextField.appearance().font = font
+//        UITextView.appearance().font = font
+        
         return true
     }
 

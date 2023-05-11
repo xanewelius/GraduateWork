@@ -56,18 +56,12 @@ final class SettingsViewController: UIViewController {
         configureView()
     }
     
-    let myTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Настройки"
-        return label
-    }()
-    
     let exitButton: UIButton = {
         var configuration = UIButton.Configuration.borderless()
         configuration.title = "Выйти"
         configuration.baseForegroundColor = .systemRed
         configuration.buttonSize = .medium
-        configuration.attributedTitle?.font = .systemFont(ofSize: 15, weight: .semibold)
+        configuration.attributedTitle?.font = UIFont(name: "Montserrat-Medium", size: 15)
         
         //configuration.image = UIImage(systemName: "arrow.right")
         //configuration.imagePlacement = .trailing
@@ -88,7 +82,10 @@ private extension SettingsViewController {
     }
     
     func configureView() {
+        let font = UIFont(name: "Montserrat-Medium", size: 16)!
+        let attributes = [NSAttributedString.Key.font: font]
         title = "Настройки"
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
         view.backgroundColor = .systemBackground
         tableView.frame = view.bounds
         view.addSubview(tableView)

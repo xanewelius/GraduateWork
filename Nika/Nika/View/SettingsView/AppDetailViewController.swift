@@ -41,7 +41,7 @@ private extension AppDetailViewController {
     
     func layout() {
         NSLayoutConstraint.activate([
-            appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70),
             appTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             appVersion.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: 5),

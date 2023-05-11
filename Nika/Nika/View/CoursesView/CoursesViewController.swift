@@ -60,9 +60,14 @@ final class CoursesViewController: UIViewController {
 private extension CoursesViewController {
     func configureView() {
         view.backgroundColor = .systemBackground
-        navigationItem.titleView = nil
+        //navigationItem.titleView = nil
         //navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Курсы"
+        //title = "Курсы"
+        let font = UIFont(name: "Montserrat-Medium", size: 16)!
+        let attributes = [NSAttributedString.Key.font: font]
+        self.navigationItem.title = "Курcы"
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)

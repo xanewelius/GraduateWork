@@ -13,7 +13,7 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont(name: "Montserrat-Medium", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -21,7 +21,7 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .light)
+        label.font = UIFont(name: "Montserrat-Light", size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -103,5 +103,3 @@ private extension CoursesCollectionViewCell {
         ])
     }
 }
-
-

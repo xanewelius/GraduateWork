@@ -18,7 +18,7 @@ final class TabBarController: UITabBarController {
     private func setupTabBar() {
         guard let lectureImage = UIImage(systemName: "book") else { return }
         guard let settingsImage = UIImage(systemName: "gearshape") else { return }
-        
+
         viewControllers = [
             createNavigationController(vc: CoursesViewController(), itemName: "Курсы", itemImage: lectureImage),
             createNavigationController(vc: SettingsViewController(), itemName: "Настройки", itemImage: settingsImage),
@@ -28,7 +28,7 @@ final class TabBarController: UITabBarController {
     private func createNavigationController(vc: UIViewController, itemName: String, itemImage: UIImage) -> UIViewController {
         let navigationViewController = UINavigationController(rootViewController: vc)
         navigationViewController.tabBarItem.title = itemName
-        navigationViewController.tabBarItem.image = itemImage      
+        navigationViewController.tabBarItem.image = itemImage
         return navigationViewController
     }
 }

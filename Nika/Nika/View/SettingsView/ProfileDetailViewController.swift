@@ -39,6 +39,7 @@ final class ProfileDetailViewController: UIViewController {
     private let nameTitle: UILabel = {
         let label = UILabel()
         label.text = "ФИО"
+        label.font = UIFont(name: "Montserrat-Medium", size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,6 +48,7 @@ final class ProfileDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "-"
         label.textColor = .systemGray
+        label.font = UIFont(name: "Montserrat-Light", size: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,6 +56,7 @@ final class ProfileDetailViewController: UIViewController {
     private let specialityTitle: UILabel = {
         let label = UILabel()
         label.text = "Доступные курсы"
+        label.font = UIFont(name: "Montserrat-Medium", size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -62,6 +65,7 @@ final class ProfileDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "-"
         label.textColor = .systemGray
+        label.font = UIFont(name: "Montserrat-Light", size: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

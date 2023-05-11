@@ -35,7 +35,7 @@ final class LectureViewController: UIViewController {
     }
     
     func fetchData(course: Course) {
-        title = "Лекции / \(course.name)"
+        self.navigationItem.title = "Лекции / \(course.name)"
         NetworkManager.shared.fetchLectures(for: course.id) { [weak self] lectures in
             self?.lectures = lectures
             self?.collectionView.reloadData()
@@ -45,6 +45,9 @@ final class LectureViewController: UIViewController {
 
 private extension LectureViewController {
     func configureView() {
+        let font = UIFont(name: "Montserrat-Medium", size: 16)!
+        let attributes = [NSAttributedString.Key.font: font]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
         view.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self

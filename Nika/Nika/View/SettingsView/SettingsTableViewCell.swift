@@ -13,6 +13,7 @@ class SettingsTableViewCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
+        label.font = UIFont(name: "Montserrat-Light", size: 15)
         return label
     }()
     
