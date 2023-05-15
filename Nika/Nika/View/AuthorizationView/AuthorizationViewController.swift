@@ -196,9 +196,9 @@ private extension AuthorizationViewController {
     
     func layout() {
         NSLayoutConstraint.activate([
-            logo.bottomAnchor.constraint(equalTo: labelLogin.topAnchor),
+            logo.bottomAnchor.constraint(equalTo: labelLogin.topAnchor, constant: -50),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logo.heightAnchor.constraint(equalToConstant: 220),
+            logo.heightAnchor.constraint(equalToConstant: 50),
             
             labelLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             

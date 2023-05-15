@@ -13,20 +13,20 @@ final class AppDetailViewController: UIViewController {
         configureView()
     }
     
-    private let appTitle: UILabel = {
-        let appTitle = UILabel()
-        appTitle.text = "Версия приложения"
-        appTitle.textColor = .gray
-        appTitle.translatesAutoresizingMaskIntoConstraints = false
-        return appTitle
-    }()
-    
     private let appVersion: UILabel = {
         let appVersion = UILabel()
-        appVersion.text = "0.1 build 1"
+        appVersion.text = "Версия приложения 1.0.4"
         appVersion.textColor = .gray
         appVersion.translatesAutoresizingMaskIntoConstraints = false
         return appVersion
+    }()
+    
+    private let logo: UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
+        image.image = UIImage(named: "logo_nika")
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
     }()
 }
 
@@ -34,18 +34,19 @@ private extension AppDetailViewController {
     func configureView() {
         title = "О приложении"
         view.backgroundColor = .systemBackground
-        view.addSubview(appTitle)
+        view.addSubview(logo)
         view.addSubview(appVersion)
         layout()
     }
     
     func layout() {
         NSLayoutConstraint.activate([
-            appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70),
-            appTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
+            logo.heightAnchor.constraint(equalToConstant: 40),
             
-            appVersion.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: 5),
-            appVersion.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            appVersion.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 15),
+            appVersion.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
