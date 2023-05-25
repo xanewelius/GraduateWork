@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
 
 final class AuthorizationViewController: UIViewController {
     
@@ -54,6 +53,7 @@ final class AuthorizationViewController: UIViewController {
         configuration.title = "Войти"
         configuration.buttonSize = .medium
         configuration.attributedTitle?.font = UIFont(name: "Montserrat-Medium", size: 15)
+        
         //configuration.image = UIImage(systemName: "arrow.right")
         //configuration.imagePlacement = .trailing
         //configuration.imagePadding = 50
@@ -260,9 +260,9 @@ private extension AuthorizationViewController {
             if error == nil {
                 let tabBarController = TabBarController()
                 tabBarController.modalPresentationStyle = .fullScreen
-//                if checkBoxButton.isSelected {
-//                    userDefaultsConfig()
-//                }
+                if checkBoxButton.isSelected {
+                    userDefaultsConfig()
+                }
                 self.present(tabBarController, animated: true)
             } else {
                 print(error!.localizedDescription)

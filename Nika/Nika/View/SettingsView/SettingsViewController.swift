@@ -67,7 +67,6 @@ final class SettingsViewController: UIViewController {
         
         let button = UIButton(configuration: configuration)
         button.clipsToBounds = true
-        button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button

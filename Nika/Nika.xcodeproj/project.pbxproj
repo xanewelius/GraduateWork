@@ -131,8 +131,8 @@
 				4069DAB729BDEA7E0051B731 /* SceneDelegate.swift */,
 				4049D6B92A0D89260079F0A3 /* NetworkService */,
 				4069DAD029BE0DEC0051B731 /* Model */,
-				4049D6AA2A0C301C0079F0A3 /* fonts */,
 				4069DACB29BDF8EE0051B731 /* View */,
+				4049D6AA2A0C301C0079F0A3 /* fonts */,
 				4069DABE29BDEA800051B731 /* Assets.xcassets */,
 				4069DAC329BDEA800051B731 /* Info.plist */,
 				40066F5129F2AF2E00B5F09E /* GoogleService-Info.plist */,
@@ -431,6 +431,7 @@
 				DEVELOPMENT_TEAM = 86GJ67H28Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Nika/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -461,6 +462,7 @@
 				DEVELOPMENT_TEAM = 86GJ67H28Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Nika/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
